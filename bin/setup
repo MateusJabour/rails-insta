@@ -24,6 +24,10 @@ chdir APP_ROOT do
   # end
 
   puts "\n== Preparing database =="
+  unless APP_ROOT.join("db/schema.rb").exist?
+    system! 'bin/rails db:create'
+    system! 'bin/rails db:migrate'
+  end
   system! 'bin/rails db:setup'
 
   puts "\n== Removing old logs and tempfiles =="
