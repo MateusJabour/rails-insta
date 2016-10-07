@@ -18,7 +18,7 @@ end
 
 # group :test do
 #   gem "factory_girl"
-#   gem "capybara"
+  gem "capybara"
   gem 'minitest-utils', require: false
 # end
 
