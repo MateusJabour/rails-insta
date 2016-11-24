@@ -1,0 +1,14 @@
+<% if record.errors.any? %>
+<div class="error-messages">
+  <p>
+    Check before submitting:
+  </p>
+  <ul>
+    <% for message in record.errors.full_messages do %>
+    <li>
+      <%= message %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

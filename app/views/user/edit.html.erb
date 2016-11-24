@@ -1,0 +1,6 @@
+<%= form_for @user, url: edit_user_path do |f| %>
+
+  <%= f.text_field :name, value: @user.name %>
+  <%= f.file_field :avatar %>
+  <%= f.submit %>
+<% end %>
