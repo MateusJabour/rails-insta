@@ -1,0 +1,5 @@
+<%= form_for @photo, url: create_photo_path do |f| %>
+  <%= f.file_field :image %>
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>
