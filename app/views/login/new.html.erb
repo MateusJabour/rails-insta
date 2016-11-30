@@ -1,3 +1,4 @@
+<h2>Instagram</h2>
 <%= form_tag login_path do %>
   <p>
     <%= label_tag :username %>
@@ -13,3 +14,7 @@
     <%= submit_tag 'Log in' %>
   </p>
 <% end %>
+
+<p>
+  If you don't have an account, <%= link_to 'Sign up', signup_path %>
+</p>

@@ -1,16 +1,27 @@
-<header>
-  <span>Instagram</span>
-  <ul>
-    <% if logged_in? %>
-      <%= image_tag current_user.avatar.url(:thumb) %>
-      <%= button_to 'Log out', logout_path %>
-    <% else %>
-      <li>
-        <%= link_to 'Sign up', signup_path  %>
-      </li>
-      <li>
-        <%= link_to 'Log in', login_path  %>
-      </li>
-    <% end %>
+<% if logged_in? %>
+<header class='main-header'>
+  <ul class="main-header__menu">
+    <li class="main-header__menu-option main-header__menu-banner">
+      <%= image_tag 'instagram-icon', height: '50px' %>
+    </li>
+    <li class="main-header__menu-option main-header__menu-logo">
+      Instagram
+    </li>
+    <li class="main-header__menu-option main-header__menu-search">
+      <form>
+        <input type="text" name="name" value="", placeholder="Search">
+      </form>
+    </li>
+    <li class="main-header__menu-option">
+      <%= link_to image_tag('bussola-icon', height: '50px')%>
+    </li>
+    <li class="main-header__menu-option">
+      <%= link_to image_tag('heart-icon', height: '50px') %>
+    </li>
+    <li class="main-header__menu-option">
+      <%= link_to image_tag('user-icon', height: '50px'), user_page_path(current_user) %>
+    </li>
   </ul>
 </header>
+<% else %>
+<% end %>

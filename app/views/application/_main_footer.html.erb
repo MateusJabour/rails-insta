@@ -1,7 +1,38 @@
-<footer>
-  <ul>
-    <li>link</li>
-    <li>link</li>
-    <li>link</li>
+<% if logged_in? %>
+<footer class="main-footer clearfix">
+  <ul class="main-footer__link-list">
+    <li class="main-footer__link">
+      <%= link_to 'About us' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Support' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Blog' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Press' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'API' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Jobs' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Privacy' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Terms' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Directory' %>
+    </li>
+    <li class="main-footer__link">
+      <%= link_to 'Language' %>
+    </li>
   </ul>
+  <small class="main-footer__brand">2016 RAILSINSTA</small>
 </footer>
+<% else %>
+<% end %>

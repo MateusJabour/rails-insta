@@ -8,12 +8,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%= render 'main_header' %>
-  <%= render 'flash_messages' %>
   <body>
-    <%= yield %>
-  </body>
+    <%= render 'main_header' %>
 
-  <%= render 'main_footer' %>
+    <div class="<% if logged_in? %>container<% else %>mini-container<% end %>">
+      <%= render 'flash_messages' %>
+      <%= yield %>
+    </div>
+
+    <%= render 'main_footer' %>
+  </body>
 
 </html>

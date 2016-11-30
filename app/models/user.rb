@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :photos
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { small: "150x150>", thumb: "38x38>" }, default_url: "/assets/missing_avatar_:style.jpg"
 
   validates_presence_of :username
   validates_email_format_of :email

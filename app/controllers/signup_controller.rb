@@ -6,7 +6,8 @@ class SignupController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to login_path, notice: 'Created account'
+      session[:user_id] = @user.id
+      redirect_to user_page_path(@user), notice: 'Welcome'
     else
       render :new
     end
