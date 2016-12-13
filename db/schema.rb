@@ -10,12 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124225324) do
+ActiveRecord::Schema.define(version: 20161209002410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
   enable_extension "citext"
+
+  create_table "comments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "photo_id"
+    t.uuid     "user_id"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_comments_on_photo_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "likes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "photo_id"
+    t.uuid     "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_likes_on_photo_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
 
   create_table "photos", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text     "description"
@@ -45,5 +64,9 @@ ActiveRecord::Schema.define(version: 20161124225324) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "comments", "photos"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "photos"
+  add_foreign_key "likes", "users"
   add_foreign_key "photos", "users"
 end
