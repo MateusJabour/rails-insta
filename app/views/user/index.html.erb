@@ -3,17 +3,17 @@
   <div class="user-profile__infos">
     <h1 class="user-profile__username"><%= @user.username %></h1>
     <%= link_to button_tag('Edit profile'), edit_user_path, class: 'user-profile__edit-profile' %>
-    <%= link_to button_tag('Log out'), logout_path, class: 'user-profile__logout' %>
+    <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
     <%= link_to  button_tag('Add photo'), create_photo_path, class: 'user-profile__add-photo' %>
     <p>Posts: <%= @user.photos.length %></p>
     <p><%= @user.name %></p>
   </div>
 </div>
 
-<ul class="user-photos">
-  <% for photo in @user.photos %>
-  <li class="user-photos__single">
+<div class="user-photos clearfix">
+  <% for photo in @user.photos.sort_by { |photo| photo.created_at }.reverse %>
+  <div class="user-photos__single">
     <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo) %>
-  </li>
+  </div>
   <% end %>
-</ul>
+</div>
