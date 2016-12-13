@@ -10,7 +10,8 @@ class UserController < ApplicationController
   def update
     @user = User.find_by_id(session[:user_id])
     @user.update(user_params)
-    redirect_to user_page_path, notice: 'Profile updated'
+    flash.now.alert = 'Profile updated'
+    render :edit
   end
 
   private

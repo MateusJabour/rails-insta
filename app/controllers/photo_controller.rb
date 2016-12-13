@@ -1,6 +1,8 @@
 class PhotoController < ApplicationController
   def index
     @photo = Photo.find_by_id(params[:id])
+    @comment = Comment.new
+    @like = Like.new
   end
 
   def new
