@@ -10,58 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209002410) do
+ActiveRecord::Schema.define(version: 20170606002006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
   enable_extension "citext"
 
-  create_table "comments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "photo_id"
-    t.uuid     "user_id"
-    t.text     "text"
+  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "photo_id"
+    t.uuid "user_id"
+    t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["photo_id"], name: "index_comments_on_photo_id", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+    t.index ["photo_id"], name: "index_comments_on_photo_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "likes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "photo_id"
-    t.uuid     "user_id"
+  create_table "likes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "photo_id"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["photo_id"], name: "index_likes_on_photo_id", using: :btree
-    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+    t.index ["photo_id"], name: "index_likes_on_photo_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "photos", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.text     "description"
-    t.uuid     "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
+  create_table "photos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "description"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "name"
-    t.citext   "username",                            null: false
-    t.string   "password_digest",                     null: false
-    t.citext   "email",                               null: false
-    t.boolean  "is_private?",         default: false, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
+  create_table "relationships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "follower_id"
+    t.uuid "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.citext "username", null: false
+    t.string "password_digest", null: false
+    t.citext "email", null: false
+    t.boolean "is_private?", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "comments", "photos"
