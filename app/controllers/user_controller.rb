@@ -1,6 +1,10 @@
 class UserController < ApplicationController
   def index
-    @user = User.find_by_id(session[:user_id])
+    @user = User.find_by_id(params[:id])
+  end
+
+  def list
+    @all_user = User.all
   end
 
   def edit

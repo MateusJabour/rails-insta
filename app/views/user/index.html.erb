@@ -3,6 +3,11 @@
   <div class="user-profile__infos">
     <h1 class="user-profile__username"><%= @user.username %></h1>
     <%= link_to button_tag('Edit profile'), edit_user_path, class: 'user-profile__edit-profile' %>
+
+    <% if current_user.id != @user.id %>
+    <%= button_to 'Follow', follow_user_path, class: 'user-profile__follow-user' %>
+    <% end %>
+
     <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
     <%= link_to  button_tag('Add photo'), create_photo_path, class: 'user-profile__add-photo' %>
     <p>Posts: <%= @user.photos.length %></p>

@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   post '/login' => 'login#create'
   post '/logout' => 'login#destroy'
 
+  get '/users' => 'user#list', as: 'users_list'
   get '/user/:id' => 'user#index', as: 'user_page'
   get '/user/:id/edit' => 'user#edit', as: 'edit_user'
   patch '/user/:id/edit' => 'user#update'
+  post '/user/:id/follow' => 'relationship#create', as: 'follow_user'
 
   get 'photo/:id' => 'photo#index', as: 'photo'
   get 'user/:id/create_photo' => 'photo#new', as: 'create_photo'
@@ -18,4 +20,6 @@ Rails.application.routes.draw do
   post 'photo/:id/create_comment' => 'comment#create', as: 'create_comment'
 
   post 'photo/:id/like' => 'like#create', as: 'like_photo'
+
+
 end
