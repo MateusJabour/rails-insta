@@ -1,8 +1,8 @@
-class CreateLikes < ActiveRecord::Migration[5.0]
+class CreateLikes < ActiveRecord::Migration[5.1]
   def change
     create_table :likes, id: :uuid do |t|
-      t.belongs_to :photo, foreign_key: true, type: :uuid
-      t.belongs_to :user, foreign_key: true, type: :uuid
+      t.references :photo, foreign_key: true, type: :uuid
+      t.references :user, foreign_key: true, type: :uuid
 
       t.timestamps null: false
     end

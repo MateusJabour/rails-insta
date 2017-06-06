@@ -1,6 +1,5 @@
-class CreateUsers < ActiveRecord::Migration[5.0]
+class CreateUsers < ActiveRecord::Migration[5.1]
   def change
-    enable_extension "uuid-ossp"
     enable_extension "citext"
 
     create_table :users, id: :uuid do |t|
