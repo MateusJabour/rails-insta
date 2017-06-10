@@ -8,8 +8,11 @@
     <%= button_to 'Follow', follow_user_path, class: 'user-profile__follow-user' %>
     <% end %>
 
+
     <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
     <%= link_to  button_tag('Add photo'), create_photo_path, class: 'user-profile__add-photo' %>
+    <p>Followers: <%= @user.followers.length %></p>
+    <p>Following: <%= @user.followings.length %></p>
     <p>Posts: <%= @user.photos.length %></p>
     <p><%= @user.name %></p>
   </div>
