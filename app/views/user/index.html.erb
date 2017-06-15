@@ -14,7 +14,12 @@
     <p>Followers: <%= @user.followers.length %></p>
     <p>Following: <%= @user.followings.length %></p>
     <p>Posts: <%= @user.photos.length %></p>
+    <% if @user.name %>
     <p><%= @user.name %></p>
+		<% end %>
+		<% if @user.biography %>
+	  <p><%= @user.biography %></p>
+		<% end %>
   </div>
 </div>
 

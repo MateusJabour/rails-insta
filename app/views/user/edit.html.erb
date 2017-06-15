@@ -1,6 +1,29 @@
 <%= form_for @user, url: edit_user_path do |f| %>
 
-  <%= f.text_field :name, value: @user.name %>
+
+		<p>
+  		<%= f.label :name %>
+  		<%= f.text_field :name, value: @user.name %>
+		</p>
+		<p>
+  		<%= f.label :website %>
+  		<%= f.text_field :website, value: @user.website %>
+		</p>
+		<p>
+  		<%= f.label :biography %>
+  		<%= f.text_field :biography, value: @user.biography %>
+		</p>
+		<p>
+  		<%= f.label :phone_number %>
+  		<%= f.text_field :phone_number, value: @user.phone_number %>
+	  </p>
+		<p>
+  		<%= f.label :gender %>
+  		<%= f.select :gender, ['Male', 'Female']%>
+	  </p>
+
   <%= f.file_field :avatar %>
-  <%= f.submit %>
+
+		<%= f.submit %>
+
 <% end %>
