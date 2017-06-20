@@ -1,8 +1,8 @@
 class LoginController < ApplicationController
   def new
-		if session[:user_id]
-			redirect_to user_page_path(session[:user_id])
-		end
+    if session[:user_id]
+      redirect_to timeline_path
+    end
   end
 
   def create
