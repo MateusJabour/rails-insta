@@ -17,7 +17,7 @@
             <%= photo_date(@photo.created_at).to_s %>
           </span>
         </div>
-        
+
         <div class="photo-page__comment-box">
           <ul class="photo-page__comment-list">
             <li class="photo-page__single-comment">
@@ -43,7 +43,7 @@
 
         <div class="photo-page__interation">
           <%= button_to '<3', like_photo_path, class: 'photo-page__like-button' %>
-          <%= render 'comment/form' %>
+          <%= render 'comment/form', photo: @photo %>
         </div>
 
       </div>
