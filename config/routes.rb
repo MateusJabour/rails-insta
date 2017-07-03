@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'login#new'
 
+  get '/timeline' => 'timeline#index'
   get '/signup' => 'signup#new'
   post '/signup' => 'signup#create'
 
