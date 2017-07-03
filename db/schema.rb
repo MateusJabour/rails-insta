@@ -63,6 +63,10 @@ ActiveRecord::Schema.define(version: 20170606002006) do
     t.citext "username", null: false
     t.string "password_digest", null: false
     t.citext "email", null: false
+    t.string "biography"
+    t.string "website"
+    t.string "phone_number"
+    t.string "gender", null: false
     t.boolean "is_private?", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
