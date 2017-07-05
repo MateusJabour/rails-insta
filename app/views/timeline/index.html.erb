@@ -19,29 +19,9 @@
           </div>
         </div>
 
-        <div class="timeline__photo-comment-box">
-          <ul class="timeline__photo-comment-list">
-            <li class="timeline__photo-single-comment">
-              <h1>
-                <%= link_to photo.user.username, user_page_path(photo.user), class: 'timeline__photo-comment-username' %>
-                <span class="timeline__photo-comment-text">
-                  <%= photo.description%>
-                </span>
-              </h1>
-            </li>
-            <% for comment in photo.comments %>
-            <li class="timeline__photo-single-comment">
-              <h1>
-                <%= link_to comment.user.username, user_page_path(comment.user.id), class: 'timeline__photo-comment-username' %>
-                <span class="timeline__photo-comment-text">
-                  <%= comment.text %>
-                </span>
-              </h1>
-            </li>
-            <% end %>
-          </ul>
-          <%= render 'comment/form', photo: photo %>
-        </div>
+        <%= render 'comment/comment-box', {photo: photo, classname: 'timeline__photo-'} %>
+        <%= render 'comment/form', photo: photo %>
+
       </div>
       <% end %>
     <% end %>

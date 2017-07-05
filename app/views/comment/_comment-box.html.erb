@@ -1,0 +1,22 @@
+<div class="<%= classname %>comment-box">
+		<ul class="<%= classname %>comment-list">
+				<li class="<%= classname %>single-comment">
+						<h1>
+								<%= link_to photo.user.username, user_page_path(photo.user), class: classname + 'comment-username' %>
+								<span class="<%= classname %>comment-text">
+										<%= photo.description%>
+								</span>
+						</h1>
+				</li>
+				<% for comment in photo.comments %>
+				<li class="<%= classname %>single-comment">
+						<h1>
+								<%= link_to comment.user.username, user_page_path(comment.user.id), class: classname + 'comment-username' %>
+								<span class="<%= classname %>comment-text">
+										<%= comment.text %>
+								</span>
+						</h1>
+				</li>
+				<% end %>
+		</ul>
+</div>

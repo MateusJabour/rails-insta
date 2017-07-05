@@ -18,31 +18,10 @@
           </span>
         </div>
 
-        <div class="photo-page__comment-box">
-          <ul class="photo-page__comment-list">
-            <li class="photo-page__single-comment">
-              <h1>
-                <%= link_to @photo.user.username, user_page_path(@photo.user), class: 'photo-page__comment-username' %>
-                <span class="photo-page__comment-text">
-                  <%= @photo.description%>
-                </span>
-              </h1>
-            </li>
-            <% for comment in @photo.comments %>
-            <li class="photo-page__single-comment">
-              <h1>
-                <%= link_to comment.user.username, user_page_path(comment.user.id), class: 'photo-page__comment-username' %>
-                <span class="photo-page__comment-text">
-                  <%= comment.text %>
-                </span>
-              </h1>
-            </li>
-            <% end %>
-          </ul>
-        </div>
+				<%= render 'comment/comment-box', {photo: @photo, classname: 'photo-page__'} %>
 
         <div class="photo-page__interation">
-          <%= button_to '<3', like_photo_path, class: 'photo-page__like-button' %>
+          <%= button_to '<3', like_photo_path, class: 'photo-page__like-button', remote: true %>
           <%= render 'comment/form', photo: @photo %>
         </div>
 
