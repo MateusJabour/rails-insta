@@ -18,9 +18,7 @@ Rails.application.routes.draw do
   get 'user/:id/create_photo' => 'photo#new', as: 'create_photo'
   post 'user/:id/create_photo' => 'photo#create'
 
-  post 'photo/:id/create_comment' => 'comment#create', as: 'create_comment'
-
-  post 'photo/:id/like' => 'like#create', as: 'like_photo'
-
+  post 'photo/:id/create_comment' => 'photo#comment', as: 'create_comment'
+  post 'photo/:id/like' => 'photo#like', as: 'like_photo'
 
 end
