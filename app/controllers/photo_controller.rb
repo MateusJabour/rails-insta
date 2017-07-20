@@ -31,6 +31,11 @@ class PhotoController < ApplicationController
 
       @like.save
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @photo.likes.count }
+    end
   end
 
   def comment
@@ -44,7 +49,7 @@ class PhotoController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @comment }
+      format.json { render json: { comment: @comment, username: @comment.user.username } }
     end
   end
 
