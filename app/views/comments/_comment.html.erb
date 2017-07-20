@@ -1,0 +1,8 @@
+<li class="single-comment">
+    <h1>
+        <%= link_to comment.user.username, user_page_path(comment.user.id), class: 'comment-username' %>
+        <span class="comment-text">
+            <%= comment.text %>
+        </span>
+    </h1>
+</li>

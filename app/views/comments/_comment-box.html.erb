@@ -1,0 +1,13 @@
+<div class="comment-box <%= classname %>comment-box">
+		<ul class="comment-list <%= classname %>comment-list">
+				<li class="<%= classname %>single-comment">
+						<h1>
+								<%= link_to photo.user.username, user_page_path(photo.user), class: classname + 'comment-username' %>
+								<span class="<%= classname %>comment-text">
+										<%= photo.description%>
+								</span>
+						</h1>
+				</li>
+				<%= render photo.comments %>
+		</ul>
+</div>
