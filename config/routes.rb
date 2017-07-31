@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/user/:id/edit' => 'user#edit', as: 'edit_user'
   patch '/user/:id/edit' => 'user#update'
   post '/user/:id/follow' => 'relationship#create', as: 'follow_user'
+  post '/user/:id/unfollow' => 'relationship#destroy', as: 'unfollow_user'
 
   get 'photo/:id' => 'photo#index', as: 'photo'
   get 'user/:id/create_photo' => 'photo#new', as: 'create_photo'

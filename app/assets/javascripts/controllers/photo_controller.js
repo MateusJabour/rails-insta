@@ -19,8 +19,6 @@
           dataType: 'json'
         }).done(function (data) {
           var likesAmountBefore = +(likeCounter.text());
-          console.log('data', data);
-          console.log('likesAmountBefore', likesAmountBefore);
           likeCounter.text(data);
           if (likesAmountBefore < data) {
             likeButton.addClass('selected');
@@ -32,13 +30,12 @@
 
       $('.new_comment').on('submit', function (e) {
         e.preventDefault();
-        var data = $(this).serializeArray();
         var commentBox = $(this).siblings('.comment-box').find('.comment-list');
 
         $.ajax({
           url: this.action,
           type: this.method,
-          data: data,
+          data: $(this).serializeArray(),
           dataType: 'json'
         }).done(function (data) {
           $('#comment_text').val('');
