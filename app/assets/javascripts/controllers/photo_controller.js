@@ -8,9 +8,40 @@
       return li.append(a).append(span);
     }
 
+    function handleCommentSuccess(commentBox) {
+      return (function (data) {
+        $('#comment_text').val('');
+        commentBox.append(generateComment(data.comment, data.username));
+      })
+    }
+
+    function handleComment(section) {
+      return (function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var commentBox;
+
+        if (section === "timeline") {
+          commentBox = $(this).siblings('.comment-box').find('.comment-list');
+        } else if (section === "single-photo") {
+          commentBox = $(this).parent().siblings('.comment-box').find('.comment-list');
+        }
+        console.log('commentBox', commentBox);
+        $.ajax({
+          url: this.action,
+          type: this.method,
+          data: $(this).serializeArray(),
+          dataType: 'json',
+          success: handleCommentSuccess(commentBox)
+        });
+      });
+    }
+
     function loadEvents() {
       $('.like-button').parent().on('submit', function (e) {
         e.preventDefault();
+        e.stopPropagation();
+
         var likeCounter = $(this).closest('.single-photo').find('.like-counter span');
         var likeButton = $(this).children('.like-button');
         $.ajax({
@@ -28,20 +59,10 @@
         })
       })
 
-      $('.new_comment').on('submit', function (e) {
-        e.preventDefault();
-        var commentBox = $(this).siblings('.comment-box').find('.comment-list');
 
-        $.ajax({
-          url: this.action,
-          type: this.method,
-          data: $(this).serializeArray(),
-          dataType: 'json'
-        }).done(function (data) {
-          $('#comment_text').val('');
-          commentBox.append(generateComment(data.comment, data.username));
-        });
-      });
+      $('.timeline .new_comment').on('submit', handleComment('timeline'));
+
+      $('.single-photo .new_comment').on('submit', handleComment('single-photo'));
     }
 
     return ({
