@@ -26,7 +26,7 @@
         } else if (section === "single-photo") {
           commentBox = $(this).parent().siblings('.comment-box').find('.comment-list');
         }
-        console.log('commentBox', commentBox);
+        
         $.ajax({
           url: this.action,
           type: this.method,
