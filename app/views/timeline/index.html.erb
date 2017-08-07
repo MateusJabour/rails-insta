@@ -14,7 +14,7 @@
 
         <div class="timeline__photo-user-interaction">
           <div class="photo-page__interation">
-            <% if photo.isLikedByUser(current_user) %>
+            <% if photo.likes.find_by_user_id(current_user.id) %>
               <% @selected = "selected" %>
             <% else %>
               <% @selected = "" %>

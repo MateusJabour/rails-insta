@@ -8,9 +8,40 @@
       return li.append(a).append(span);
     }
 
+    function handleCommentSuccess(commentBox) {
+      return (function (data) {
+        $('#comment_text').val('');
+        commentBox.append(generateComment(data.comment, data.username));
+      })
+    }
+
+    function handleComment(section) {
+      return (function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var commentBox;
+
+        if (section === "timeline") {
+          commentBox = $(this).siblings('.comment-box').find('.comment-list');
+        } else if (section === "single-photo") {
+          commentBox = $(this).parent().siblings('.comment-box').find('.comment-list');
+        }
+        
+        $.ajax({
+          url: this.action,
+          type: this.method,
+          data: $(this).serializeArray(),
+          dataType: 'json',
+          success: handleCommentSuccess(commentBox)
+        });
+      });
+    }
+
     function loadEvents() {
       $('.like-button').parent().on('submit', function (e) {
         e.preventDefault();
+        e.stopPropagation();
+
         var likeCounter = $(this).closest('.single-photo').find('.like-counter span');
         var likeButton = $(this).children('.like-button');
         $.ajax({
@@ -19,8 +50,6 @@
           dataType: 'json'
         }).done(function (data) {
           var likesAmountBefore = +(likeCounter.text());
-          console.log('data', data);
-          console.log('likesAmountBefore', likesAmountBefore);
           likeCounter.text(data);
           if (likesAmountBefore < data) {
             likeButton.addClass('selected');
@@ -30,21 +59,10 @@
         })
       })
 
-      $('.new_comment').on('submit', function (e) {
-        e.preventDefault();
-        var data = $(this).serializeArray();
-        var commentBox = $(this).siblings('.comment-box').find('.comment-list');
 
-        $.ajax({
-          url: this.action,
-          type: this.method,
-          data: data,
-          dataType: 'json'
-        }).done(function (data) {
-          $('#comment_text').val('');
-          commentBox.append(generateComment(data.comment, data.username));
-        });
-      });
+      $('.timeline .new_comment').on('submit', handleComment('timeline'));
+
+      $('.single-photo .new_comment').on('submit', handleComment('single-photo'));
     }
 
     return ({
