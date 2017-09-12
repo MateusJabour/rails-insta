@@ -2,7 +2,12 @@
   <%= image_tag @user.avatar.url(:medium), class: 'user-profile__photo' %>
   <div class="user-profile__infos">
     <h1 class="user-profile__username"><%= @user.username %></h1>
-    <%= link_to button_tag('Edit profile'), edit_user_path, class: 'user-profile__edit-profile' %>
+
+    <% if current_user.id == @user.id %>
+      <%= link_to button_tag('Edit profile'), edit_user_path, class: 'user-profile__edit-profile' %>
+      <%= link_to button_tag('Add photo'), create_photo_path, class: 'user-profile__add-photo' %>
+      <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
+    <% end %>
 
     <% if current_user.id != @user.id %>
       <% if current_user.following_relationships.find_by_followed_id(@user.id) %>
@@ -12,9 +17,6 @@
        <% end %>
     <% end %>
 
-
-    <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
-    <%= link_to  button_tag('Add photo'), create_photo_path, class: 'user-profile__add-photo' %>
     <p>Followers: <span class="user-profile__follower-counter"><%= @user.followers.length %></span></p>
     <p>Following: <span class="user-profile__following-counter"><%= @user.followings.length %></span></p>
     <p>Posts: <%= @user.photos.length %></p>
