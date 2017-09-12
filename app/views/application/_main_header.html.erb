@@ -16,7 +16,7 @@
       <%= link_to image_tag('bussola-icon', height: '50px'), users_list_path %>
     </li>
     <li class="main-header__menu-option">
-      <%= link_to image_tag('heart-icon', height: '50px') %>
+      <%= link_to image_tag('heart-icon', height: '50px'), notifications_path(current_user) %>
     </li>
     <li class="main-header__menu-option">
       <%= link_to image_tag('user-icon', height: '50px'), user_page_path(current_user) %>
