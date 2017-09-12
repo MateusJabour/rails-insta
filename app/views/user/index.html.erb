@@ -1,5 +1,5 @@
 <div class="user-profile clearfix">
-  <%= image_tag @user.avatar.url(:small), class: 'user-profile__photo' %>
+  <%= image_tag @user.avatar.url(:medium), class: 'user-profile__photo' %>
   <div class="user-profile__infos">
     <h1 class="user-profile__username"><%= @user.username %></h1>
     <%= link_to button_tag('Edit profile'), edit_user_path, class: 'user-profile__edit-profile' %>

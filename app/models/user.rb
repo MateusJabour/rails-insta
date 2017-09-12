@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :followings, class_name: 'User', through: :following_relationships, source: :followed
   has_many :followers, class_name: 'User', through: :follower_relationships, source: :follower
 
-  has_attached_file :avatar, styles: { small: "150x150>", thumb: "38x38>" }, default_url: "/assets/missing_avatar_:style.jpg"
+  has_attached_file :avatar, styles: { medium: "150x150>", small: "75x75>", thumb: "38x38>" }, default_url: "/assets/missing_avatar_:style.jpg"
 
   validates_presence_of :username, :gender
   validates_email_format_of :email
