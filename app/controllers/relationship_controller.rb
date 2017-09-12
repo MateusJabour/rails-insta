@@ -6,7 +6,9 @@ class RelationshipController < ApplicationController
     @relationship.follower_id = current_user.id
     @relationship.followed_id = @followed_user.id
 
-    @relationship.save
+    if @relationship.save
+      @relationship.createNotification
+    end
 
     respond_to do |format|
       format.html

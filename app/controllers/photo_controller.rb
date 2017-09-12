@@ -29,7 +29,9 @@ class PhotoController < ApplicationController
       @like = @photo.likes.new
       @like.user_id = current_user.id
 
-      @like.save
+      if @like.save
+        @like.createNotification
+      end
     end
 
     respond_to do |format|
@@ -43,7 +45,9 @@ class PhotoController < ApplicationController
     @comment = @photo.comments.new(comment_params)
     @comment.user_id = current_user.id
 
-    unless @comment.save
+    if @comment.save
+      @comment.createNotification
+    else
       flash.now.alert = 'Invalid comment'
     end
 
