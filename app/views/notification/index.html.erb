@@ -1,0 +1,32 @@
+<div class="notifications">
+  <% if @notifications.count != 0 %>
+    <% for notification in @notifications  %>
+      <div class="notifications__notification">
+
+        <%= link_to user_page_path(notification.user_id), class: "notifications__notification-link" do %>
+          <%= image_tag notification.user.avatar.url(:small), class: "notifications__notification-avatar" %>
+        <% end %>
+        <span class="notifications__notification-text"><%= notification.text %></span>
+
+        <% if notification.subject != 'relationship' %>
+          <%= link_to photo_path(notification.target_id), class: "notifications__notification-right-side" do %>
+            <%= image_tag Photo.find_by_id(notification.target_id).image.url(:medium), class: "notifications__notification-photo" %>
+          <% end %>
+        <% end %>
+
+        <% if notification.subject == 'relationship' %>
+          <div class="notifications__notification-right-side">
+            <% if current_user.following_relationships.find_by_followed_id(notification.target_id) %>
+              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'relationship-control', data: { 'inverse': 'Follow', 'inverse-action': follow_user_path(notification.user_id) } %>
+            <% else %>
+              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'relationship-control', data: { 'inverse': 'Unfollow', 'inverse-action': unfollow_user_path(notification.user_id) } %>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
+    <% else %>
+      You don't have any notification.
+  <% end %>
+</div>
