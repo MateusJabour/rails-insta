@@ -1,7 +1,9 @@
-(function ($, win, doc) {
+(function () {
+  'use strict';
+
   var RelationshipController = (function () {
     function loadEvents() {
-      $(doc).on('click', '.relationship-control', function (e) {
+      $(document).on('click', '.relationship-control', function (e) {
           e.preventDefault();
           e.stopPropagation();
 
@@ -36,4 +38,4 @@
   })();
 
   RelationshipController.loadEvents();
-})(jQuery, window, document);
+})();

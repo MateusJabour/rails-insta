@@ -1,4 +1,6 @@
-(function ($, win, doc) {
+(function () {
+  'use strict';
+
   var PhotoController = (function () {
     function generateComment(comment, username) {
       var li = $('<li class="single-comment"></li>');
@@ -26,7 +28,7 @@
         } else if (section === "single-photo") {
           commentBox = $(this).parent().siblings('.comment-box').find('.comment-list');
         }
-        
+
         $.ajax({
           url: this.action,
           type: this.method,
@@ -72,4 +74,4 @@
   })();
 
   PhotoController.loadEvents();
-})(jQuery, window, document);
+})();
