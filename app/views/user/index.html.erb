@@ -9,16 +9,23 @@
       <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
     <% end %>
 
+    <% if @user.pending_following_relationships.find_by_followed_id(current_user.id) %>
+        <%= link_to 'Accept', accept_relationship_path, data: { relationship_id: @user.pending_following_relationships.find_by_followed_id(current_user.id).id }, class: 'user-profile__unfollow-user pending-relationship-control' %>
+        <%= link_to 'Decline', decline_relationship_path, data: { relationship_id: @user.pending_following_relationships.find_by_followed_id(current_user.id).id }, class: 'user-profile__unfollow-user pending-relationship-control' %>
+    <% end %>
+
     <% if current_user.id != @user.id %>
       <% if current_user.following_relationships.find_by_followed_id(@user.id) %>
-          <%= button_to 'Unfollow', unfollow_user_path, class: 'user-profile__unfollow-user relationship-control', data: { 'inverse': 'Follow', 'inverse-action': follow_user_path } %>
-        <% else %>
-          <%= button_to 'Follow', follow_user_path, class: 'user-profile__follow-user relationship-control', data: { 'inverse': 'Unfollow', 'inverse-action': unfollow_user_path } %>
+          <%= button_to 'Unfollow', unfollow_user_path, class: 'user-profile__unfollow-user relationship-control' %>
+      <% elsif current_user.pending_following_relationships.find_by_followed_id(@user.id) %>
+          <%= button_to 'Pending', unfollow_user_path, class: 'user-profile__unfollow-user relationship-control' %>
+      <% else %>
+          <%= button_to 'Follow', follow_user_path, class: 'user-profile__follow-user relationship-control' %>
        <% end %>
     <% end %>
 
-    <p>Followers: <span class="user-profile__follower-counter"><%= @user.followers.length %></span></p>
-    <p>Following: <span class="user-profile__following-counter"><%= @user.followings.length %></span></p>
+    <p>Followers: <span class="user-profile__follower-counter"><%= @user.follower_relationships.length %></span></p>
+    <p>Following: <span class="user-profile__following-counter"><%= @user.following_relationships.length %></span></p>
     <p>Posts: <%= @user.photos.length %></p>
     <% if @user.name %>
     <p><%= @user.name %></p>

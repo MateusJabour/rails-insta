@@ -11,7 +11,7 @@ class Relationship < ApplicationRecord
 
     @notification.user_id = @user.id
     @notification.notified_user_id = @notified_user.id
-    @notification.text = @user.username + ' followed you'
+    @notification.text = @user.username + ' is following you'
     @notification.subject = 'relationship'
     @notification.target_id = @user.id
 
