@@ -3,8 +3,7 @@
 
   var userController = (function() {
     function loadEvents () {
-      $('.privacy-toggle').on('change', togglePrivacy)
-      $('.user-edit-form').on('submit', editUser)
+      $('.privacy-toggle').on('change', togglePrivacy);
     }
 
     function togglePrivacy(event) {
