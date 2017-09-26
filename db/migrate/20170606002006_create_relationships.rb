@@ -4,6 +4,8 @@ class CreateRelationships < ActiveRecord::Migration[5.1]
       t.uuid :follower_id, foreign_key: true
       t.uuid :followed_id, foreign_key: true
 
+      t.boolean :accepted, null: false, default: false
+
       t.timestamps null: false
     end
 

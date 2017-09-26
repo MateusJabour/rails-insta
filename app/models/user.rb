@@ -5,13 +5,24 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  has_many :following_relationships, class_name:  "Relationship",
+  has_many :following_relationships, -> { where accepted: true },
+                            class_name:  "Relationship",
                             foreign_key: "follower_id",
                             dependent:   :destroy
 
-  has_many :follower_relationships, class_name:  "Relationship",
+
+  has_many :follower_relationships, -> { where accepted: true },
+                            class_name:  "Relationship",
                             foreign_key: "followed_id",
                             dependent:   :destroy
+
+  has_many :pending_following_relationships, -> { where accepted: false },
+                              class_name:  "Relationship",
+                              foreign_key: "follower_id"
+
+  has_many :pending_follower_relationships, -> { where accepted: false },
+                              class_name:  "Relationship",
+                              foreign_key: "followed_id"
 
   has_many :followings, class_name: 'User', through: :following_relationships, source: :followed
   has_many :followers, class_name: 'User', through: :follower_relationships, source: :follower

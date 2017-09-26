@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170807233114) do
   create_table "relationships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "follower_id"
     t.uuid "followed_id"
+    t.boolean "accepted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
