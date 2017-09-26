@@ -1,6 +1,24 @@
 <div class="notifications">
+  <% if @pending_followeds.count != 0 %>
+    <% for pending_followed in @pending_followeds %>
+    <div class="notifications__notification">
+      <%= link_to user_page_path(pending_followed.follower_id), class: "notifications__notification-link" do %>
+        <%= image_tag User.find_by_id(pending_followed.follower_id).avatar.url(:small), class: "notifications__notification-avatar" %>
+      <% end %>
+
+      <span class="notifications__notification-text">
+        <%= User.find_by_id(pending_followed.follower_id).username %> wants to follow you.
+      </span>
+
+      <div class="notifications__notification-right-side">
+          <%= link_to 'Accept', accept_relationship_path(current_user.id), class: 'pending-relationship-control', data: { 'relationship_id': pending_followed.id } %>
+          <%= link_to 'Decline', decline_relationship_path(current_user.id), class: 'pending-relationship-control', data: { 'relationship_id': pending_followed.id } %>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
   <% if @notifications.count != 0 %>
-    <% for notification in @notifications  %>
+    <% for notification in @notifications %>
       <div class="notifications__notification">
 
         <%= link_to user_page_path(notification.user_id), class: "notifications__notification-link" do %>
@@ -17,9 +35,11 @@
         <% if notification.subject == 'relationship' %>
           <div class="notifications__notification-right-side">
             <% if current_user.following_relationships.find_by_followed_id(notification.target_id) %>
-              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'relationship-control', data: { 'inverse': 'Follow', 'inverse-action': follow_user_path(notification.user_id) } %>
+              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'relationship-control'%>
+            <% elsif current_user.pending_following_relationships.find_by_followed_id(notification.target_id) %>
+              <%= button_to 'Pending', unfollow_user_path, class: 'relationship-control', data: { 'inverse': 'Follow', 'inverse-action': follow_user_path } %>
             <% else %>
-              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'relationship-control', data: { 'inverse': 'Unfollow', 'inverse-action': unfollow_user_path(notification.user_id) } %>
+              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'relationship-control'%>
             <% end %>
           </div>
         <% end %>
