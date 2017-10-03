@@ -1,27 +1,21 @@
 <% if logged_in? %>
 <header class='main-header'>
-  <ul class="main-header__menu">
-    <li class="main-header__menu-option main-header__menu-banner">
-      <%= link_to image_tag('instagram-icon', height: '50px'), timeline_path %>
-    </li>
-    <li class="main-header__menu-option main-header__menu-logo">
-      Instagram
-    </li>
-    <li class="main-header__menu-option main-header__menu-search">
+  <div class="main-header__menu">
+    <div class="main-header__menu-sections">
+      <%= link_to image_tag('instagram-icon'), timeline_path, class: "main-header__logo" %>
+      <%= link_to image_tag('written_insta.png'), timeline_path, class: "main-header__written-logo" %>
+    </div>
+    <div class="main-header__menu-sections">
       <form>
-        <input type="text" name="name" value="", placeholder="Search">
+        <input type="text" name="name" value="" placeholder="Search" class="main-header__search">
       </form>
-    </li>
-    <li class="main-header__menu-option">
-      <%= link_to image_tag('bussola-icon', height: '50px'), users_list_path %>
-    </li>
-    <li class="main-header__menu-option">
-      <%= link_to image_tag('heart-icon', height: '50px'), notifications_path(current_user) %>
-    </li>
-    <li class="main-header__menu-option">
-      <%= link_to image_tag('user-icon', height: '50px'), user_page_path(current_user) %>
-    </li>
-  </ul>
+    </div>
+    <div class="main-header__menu-sections">
+      <%= link_to image_tag('bussola-icon'), users_list_path, class: "main-header__menu-icons" %>
+      <%= link_to image_tag('heart-icon'), notifications_path(current_user), class: "main-header__menu-icons" %>
+      <%= link_to image_tag('user-icon'), user_page_path(current_user), class: "main-header__menu-icons" %>
+    </div>
+  </div>
 </header>
 <% else %>
 <% end %>

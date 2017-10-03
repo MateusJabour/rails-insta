@@ -9,26 +9,34 @@
   border: 1px solid $border-color
   border-radius: 76px
 
-.user-profile__infos
+.user-profile__right-side
   height: 100%
   float: right
   width: 67%
 
+.user-profile__counters
+  margin-top: 15px
+
+.user-profile__counter
+  display: inline-block
+  margin-right: 30px
+
+  span
+    font-weight: bold
+
 .user-profile__username
   margin: 0
+  font-weight: 200
   display: inline-block
 
 .user-profile__edit-profile
-  font-size: 13pt
   margin-left: 20px
 
 .user-profile__add-photo
-  font-size: 13pt
   margin-left: 10px
 
 .user-profile__logout
   margin-left: 10px
-  display: inline
 
 .user-photos
   display: -webkit-flex
@@ -37,9 +45,21 @@
   flex-wrap: wrap
   justify-content: flex-start
   width: 935px
-  margin: 20px auto
+  margin: 30px auto
 
 .user-photos__single
   height: 293px
   width: 293px
   margin: 0 18px 20px 0
+  display: flex
+  justify-content: center
+  align-items: center
+  
+.user-profile__infos
+  margin-top: 15px
+
+  p
+    margin: 0
+
+.user-profile__name
+  font-weight: 600

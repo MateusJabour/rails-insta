@@ -1,12 +1,14 @@
 <div class="user-profile clearfix">
   <%= image_tag @user.avatar.url(:medium), class: 'user-profile__photo' %>
-  <div class="user-profile__infos">
-    <h1 class="user-profile__username"><%= @user.username %></h1>
+  <div class="user-profile__right-side">
+    <div class="user-profile__actions">
+
+    <h2 class="user-profile__username"><%= @user.username %></h2>
 
     <% if current_user.id == @user.id %>
-      <%= link_to button_tag('Edit profile'), edit_user_path, class: 'user-profile__edit-profile' %>
-      <%= link_to button_tag('Add photo'), create_photo_path, class: 'user-profile__add-photo' %>
-      <%= button_to 'Log out', logout_path, class: 'user-profile__logout' %>
+      <%= link_to 'Edit profile', edit_user_path, class: 'button user-profile__edit-profile' %>
+      <%= link_to 'Add photo', create_photo_path, class: 'button user-profile__add-photo' %>
+      <%= link_to 'Log out', logout_path, class: 'button user-profile__logout' %>
     <% end %>
 
     <% if @user.pending_following_relationships.find_by_followed_id(current_user.id) %>
@@ -23,16 +25,22 @@
           <%= button_to 'Follow', follow_user_path, class: 'user-profile__follow-user relationship-control' %>
        <% end %>
     <% end %>
+    </div>
 
-    <p>Followers: <span class="user-profile__follower-counter"><%= @user.follower_relationships.length %></span></p>
-    <p>Following: <span class="user-profile__following-counter"><%= @user.following_relationships.length %></span></p>
-    <p>Posts: <%= @user.photos.length %></p>
-    <% if @user.name %>
-    <p><%= @user.name %></p>
-		<% end %>
-		<% if @user.biography %>
-	  <p><%= @user.biography %></p>
-		<% end %>
+    <div class="user-profile__counters">
+      <p class="user-profile__counter"><span class="follower-counter"><%= @user.follower_relationships.length %></span> Followers</p>
+      <p class="user-profile__counter"><span class="following-counter"><%= @user.following_relationships.length %></span> Following</p>
+      <p class="user-profile__counter"><span><%= @user.photos.length %></span> Posts</p>
+    </div>
+
+    <div class="user-profile__infos">
+      <% if @user.name || @user.biography%>
+        <p>
+          <span class="user-profile__name"><%= @user.name %></span>
+          <span class="user-profile__biography"><%= @user.biography %></span>
+        </p>
+    	<% end %>
+    </div>
   </div>
 </div>
 
