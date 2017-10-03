@@ -21,6 +21,6 @@ class LoginController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_path, notice: 'Logged out'
+    redirect_to root_path
   end
 end
