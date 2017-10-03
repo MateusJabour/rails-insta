@@ -34,7 +34,7 @@
             relationshipForm.action = data.button_action;
             $(relationshipButton).val(data.button_name);
 
-            $('.user-profile__follower-counter').text(data.follower_amount);
+            $('.follower-counter').text(data.follower_amount);
           }
         });
       });
