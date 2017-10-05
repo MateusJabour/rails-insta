@@ -1,5 +1,6 @@
 .main-header
   margin: 0 0 45px 0
+  padding: 0 20px
   border-bottom: 0.5px solid $border-color
   background-color: #fff
 
@@ -8,25 +9,44 @@
   align-items: center
   justify-content: space-between
   height: $footer-height
-  width: 937px
+  width: 100%
   margin: 0 auto
 
+  @media #{$tablet-breakpoint}
+    max-width: 937px
+
 .main-header__logo
-  margin: 0 20px 0 0
-  padding: 0 20px 0 0
+  margin: 0 10px 0 0
+  padding: 0 10px 0 0
   border-right: 1px solid #000
 
   img
-    height: 30px
+    height: 25px
+
+  @media #{$tablet-breakpoint}
+    margin: 0 20px 0 0
+    padding: 0 20px 0 0
+    img
+      height: 30px
+
 
 .main-header__written-logo img
-  height: 40px
+  height: 30px
+
+  @media #{$tablet-breakpoint}
+    height: 40px
 
 .main-header__menu-icons
-  margin-left: 20px
+  margin-left: 10px
 
   img
-    height: 30px
+    height: 20px
+
+  @media #{$tablet-breakpoint}
+    margin-left: 20px
+
+    img
+      height: 30px
 
 .main-header__menu-sections
   display: -webkit-flex
@@ -36,10 +56,13 @@
 
 .main-header__search
   border: 1px solid $border-color
-  padding: 6px 30px
+  padding: 6px 0px
   text-align: center
-  font-size: 14px
+  font-size: $base-font-size
   background-color: $background-color
   border-radius: 3px
   font-weight: 100
   color: #9ba1a7
+
+  @media #{$tablet-breakpoint}
+    padding: 6px 30px
