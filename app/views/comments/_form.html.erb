@@ -1,4 +1,3 @@
-<%= form_for Comment.new, url: create_comment_path(photo) do |f| %>
-  <%= f.text_field :text %>
-  <%= f.submit 'Comment' %>
+<%= form_for Comment.new, url: create_comment_path(photo), class: "comment_form"  do |f| %>
+  <%= f.text_field :text, placeholder: "Add a comment" %>
 <% end %>

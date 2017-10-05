@@ -40,24 +40,25 @@
     }
 
     function loadEvents() {
-      $('.like-button').parent().on('submit', function (e) {
+      $('.like-button').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
 
         var likeCounter = $(this).closest('.single-photo').find('.like-counter span');
-        var likeButton = $(this).children('.like-button');
+        var likeButton = $(this);
         $.ajax({
-          url: this.action,
-          type: this.method,
+          url: this.href,
+          type: "POST",
           dataType: 'json'
         }).done(function (data) {
           var likesAmountBefore = +(likeCounter.text());
           likeCounter.text(data);
           if (likesAmountBefore < data) {
-            likeButton.addClass('selected');
+            likeButton.children('img').attr('src', "/assets/heart-icon-filled.png");
           } else {
-            likeButton.removeClass('selected');
+            likeButton.children('img').attr('src', "/assets/heart-icon.png");
           }
+          console.log(likeButton);
         })
       })
 
