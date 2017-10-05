@@ -7,8 +7,8 @@
 
     <% if current_user.id == @user.id %>
       <%= link_to 'Edit profile', edit_user_path, class: 'button user-profile__edit-profile' %>
-      <%= link_to 'Add photo', create_photo_path, class: 'button user-profile__add-photo' %>
-      <%= link_to 'Log out', logout_path, class: 'button user-profile__logout' %>
+      <%= link_to (image_tag("add")), create_photo_path, class: 'user-profile__add-photo' %>
+      <%= link_to (image_tag("logout")), logout_path, class: 'user-profile__logout' %>
     <% end %>
 
     <% if @user.pending_following_relationships.find_by_followed_id(current_user.id) %>
@@ -45,9 +45,13 @@
 </div>
 
 <div class="user-photos clearfix">
-  <% for photo in @user.photos.sort_by { |photo| photo.created_at }.reverse %>
-  <div class="user-photos__single">
-    <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo) %>
+  <% for photos in @user.photos.sort_by { |photo| photo.created_at }.reverse.each_slice(3).to_a %>
+  <div class="user-photos__row">
+    <% for photo in photos %>
+      <div class="user-photos__single">
+        <%= link_to image_tag(photo.image.url(:medium)), photo_path(photo) %>
+      </div>
+      <% end %>
   </div>
   <% end %>
 </div>
