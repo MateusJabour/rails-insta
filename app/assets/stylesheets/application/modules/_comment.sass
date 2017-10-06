@@ -1,3 +1,20 @@
+.comment-box
+  padding: 20px 0 20px 20px
+  border-top: 1px solid $border-color
+  width: 100%
+  min-height: 100px
+
+
+.photo-page__container .comment-box
+  @media #{$tablet-breakpoint}
+    height: 410px
+    overflow-y: scroll
+    overflow-x: hidden
+
+.comment-list
+  padding: 0
+  list-style: none
+
 .single-comment
   margin-bottom: 7px
 
@@ -12,15 +29,3 @@
 
 .comment-text
   font-weight: 100
-
-.new_comment
-  height: 50px
-  width: 90%
-
-  input
-    font-size: $base-font-size
-    height: 100%
-    width: 100%
-
-  @media #{$tablet-breakpoint}
-    width: 80%

@@ -15,19 +15,6 @@
     flex-direction: row
     max-height: 600px
 
-.photo-page__infos
-  flex-direction: column
-  display: flex
-  flex-grow: 1
-  width: 100%
-  border-top: 1px solid $border-color
-
-  @media #{$tablet-breakpoint}
-    border-top: none
-    border-left: 1px solid $border-color
-    width: 337px
-    height: 600px
-
 .photo-page__photo
   max-width: 100%
   img
@@ -40,54 +27,3 @@
     flex-grow: 2
     img
       max-width: 100%
-
-.photo-page__user-profile
-  margin: 0 0 10px 0
-  padding: 20px 15px
-  border-bottom: 1px solid $border-color
-  display: flex
-  align-items: center
-
-.photo-page__user-profile-photo
-  border: 1px solid $border-color
-  border-radius: 75px
-  margin-right: 10px
-
-.photo-page__user-profile-username
-  line-height: 100%
-
-.photo-page__photo-stats
-  padding: 10px 0
-  height: 50px
-  padding-left: 20px
-
-.photo-page__created-at
-  float: right
-  margin-right: 10px
-
-.photo-page__like-button.selected
-  background-color: red
-
-.photo-page__likes
-  font-weight: 600
-
-.photo-page__comment-box
-  padding: 20px 0 0 20px
-  width: 100%
-  border-bottom: 1px solid $border-color
-  border-top: 1px solid $border-color
-  min-height: 100px
-
-  @media #{$tablet-breakpoint}
-    height: 410px
-    overflow-y: scroll
-    overflow-x: hidden
-
-.photo-page__comment-list
-  list-style: none
-  padding: 0 10px 0 0
-  margin: 0
-
-.photo-page__interation
-  display: flex
-  justify-content: flex-start
