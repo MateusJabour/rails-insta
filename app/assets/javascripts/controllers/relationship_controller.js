@@ -34,6 +34,12 @@
             relationshipForm.action = data.button_action;
             $(relationshipButton).val(data.button_name);
 
+            if (data.button_name === 'Follow') {
+              $(relationshipButton).addClass('button--secondary');
+            } else {
+              $(relationshipButton).removeClass('button--secondary');
+            }
+
             $('.follower-counter').text(data.follower_amount);
           }
         });
