@@ -8,7 +8,9 @@
   </head>
 
   <body>
-    <%= render 'main_header' %>
+    <% if logged_in? %>
+      <%= render 'main_header' %>
+    <% end %>
 
     <div class="<% if logged_in? %>container<% else %>mini-container<% end %>">
       <%= yield %>
