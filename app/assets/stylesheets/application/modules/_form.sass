@@ -11,13 +11,11 @@
   display: block
 
 .form__field
+  @extend .field
+  padding: 10px
   display: block
   margin: 5px auto
   width: 300px
-  padding: 10px
-  font-size: $base-font-size
-  font-family: $font-family
-
   @media #{$tablet-breakpoint}
     margin: 5px 0
     width: 100%
