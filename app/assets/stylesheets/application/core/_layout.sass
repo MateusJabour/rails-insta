@@ -6,20 +6,31 @@
   box-sizing: border-box
 
 body
-  background-color: #fafafa
+  background-color: $background-color
   margin: 0
+  font-family: $font-family
+  font-size: 14px
+
+  @media #{$tablet-breakpoint}
+    font-size: 16px
 
 .container
-  min-height: 750px
-  width: 1100px
+  width: 100%
   margin: 0 auto
+  min-height: 600px
+
+  @media #{$tablet-breakpoint}
+    max-width: 937px
+    min-height: 700px
 
 .mini-container
-  width: 400px
-  height: 400px
-  margin: 130px auto
-  border: 1px solid black
-  padding: 15px
+  width: 100%
+  margin: 0 auto
+  height: 100%
+
+  @media #{$tablet-breakpoint}
+    width: 400px
+    min-height: 700px
 
 .clearfix:before,
 .clearfix:after

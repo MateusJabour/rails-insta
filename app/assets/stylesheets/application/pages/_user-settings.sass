@@ -1,0 +1,69 @@
+.user-settings
+  background-color: #fff
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  border: 1px solid $border-color
+
+.user-settings__options
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  justify-content: center
+  border-right: 1px solid #000
+  width: 25%
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    width: 100%
+
+    .tab
+      width: 100%
+      padding: 20px 15%
+      cursor: pointer
+
+      &--selected
+        border-left: 2px solid #000
+        font-weight: bold
+        padding: 20px 15% 20px calc(15% - 2px)
+
+
+.user-settings__content
+  width: 75%
+
+.user-settings__field
+  width: 90%
+  margin: 20px auto
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  align-items: center
+
+  .left-side
+    width: 25%
+    text-align: right
+    margin-right: 10px
+    font-weight: bold
+
+    label
+      width: 100%
+    img
+      width: 50px
+
+  .right-side
+    width: 60%
+    
+    .text_field
+      @extend .field
+      width: 100%
+      padding: 5px 10px
+
+
+  .right-side.checkbox
+    width: 80%
+    display: inline-flex
+    align-items: center
+
+    input
+      margin-right: 10px

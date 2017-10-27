@@ -1,2 +1,34 @@
 .button_to
   display: inline
+
+.message.alert
+  color: $error-red
+  text-align: center
+
+.link
+  color: $insta-blue
+  text-decoration: none
+
+.button
+  font-size: 14px
+  text-decoration: none
+  color: black
+  font-weight: 600
+  padding: 5px 12px
+  border: 1px solid $border-color
+  border-radius: 3px
+  background-color: #fff
+
+  &.button--secondary
+    background-color: $insta-blue
+    color: #fff
+  @media #{$tablet-breakpoint}
+    padding: 5px 24px
+
+.field
+  border: 1px solid #efefef
+  font-size: $base-font-size
+  font-family: $font-family
+
+.hidden
+  display: none

@@ -1,0 +1,73 @@
+<%= form_for @user, url: edit_user_path, html: { class: "user-edit-form" } do |f| %>
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= image_tag @user.avatar.url(:small)  %>
+    </div>
+    <div class="right-side">
+      <%= f.file_field :avatar, class: "avatar" %>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= f.label :name %>
+    </div>
+    <div class="right-side">
+      <%= f.text_field :name, value: @user.name, class: "text_field" %>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= f.label :website %>
+    </div>
+    <div class="right-side">
+      <%= f.text_field :website, value: @user.website, class: "text_field" %>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= f.label :biography %>
+    </div>
+    <div class="right-side">
+      <%= f.text_area :biography, value: @user.biography, class: "text_field" %>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= f.label :phone_number %>
+    </div>
+    <div class="right-side">
+      <%= f.text_field :phone_number, value: @user.phone_number, class: "text_field" %>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= f.label :gender %>
+    </div>
+    <div class="right-side">
+      <%= f.select :gender, ['Male', 'Female'], class: "dropdown"%>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side">
+      <%= f.label :is_private %>
+    </div>
+    <div class="right-side checkbox">
+      <%= f.check_box :is_private?, checked: @user.is_private? %>
+      <span>Your photos will be private, only people that follow you will be able to see them</span>
+    </div>
+  </div>
+
+  <div class="user-settings__field">
+    <div class="left-side"></div>
+    <div class="right-side">
+      <%= f.submit 'Submit', class: "button button--secondary" %>
+    </div>
+  </div>
+
+<% end %>

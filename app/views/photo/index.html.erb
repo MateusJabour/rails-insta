@@ -1,30 +1,6 @@
-<div class="single-photo photo-page">
-  <div class="photo-page__container">
-    <%= image_tag @photo.image.url(:large), class: 'photo-page__photo'%>
-    <div class="photo-page__infos">
-      <div class="photo-page__user-profile">
-        <%= link_to image_tag(@photo.user.avatar.url(:thumb), class: 'photo-page__user-profile-photo')+"#{@photo.user.username}", user_page_path(@photo.user) %>
-      </div>
-
-      <div class="photo-page__stats">
-        <div class="photo-page__photo-stats clearfix">
-          <span class="like-counter photo-page__likes">
-            <span><%= @photo.likes.count %></span> likes
-          </span>
-
-          <span class="photo-page__created-at">
-            <%= photo_date(@photo.created_at).to_s %>
-          </span>
-        </div>
-
-				<%= render 'comments/comment-box', {photo: @photo, classname: 'photo-page__'} %>
-
-        <div class="photo-page__interation">
-          <%= button_to '<3', like_photo_path, class: 'like-button photo-page__like-button', remote: true %>
-          <%= render 'comments/form', photo: @photo %>
-        </div>
-
-      </div>
-    </div>
+<div class="photo-page__container single-photo">
+  <div class="photo-page__photo">
+    <%= image_tag @photo.image.url(:large) %>
   </div>
+  <%= render 'application/information_section', photo: @photo %>
 </div>

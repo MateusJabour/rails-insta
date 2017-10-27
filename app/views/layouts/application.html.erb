@@ -4,14 +4,15 @@
     <title>Insta</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render 'main_header' %>
+    <% if logged_in? %>
+      <%= render 'main_header' %>
+    <% end %>
 
     <div class="<% if logged_in? %>container<% else %>mini-container<% end %>">
-      <%= render 'flash_messages' %>
       <%= yield %>
     </div>
 

@@ -1,33 +1,13 @@
 <div class="timeline">
   <div class="timeline__photos-list">
     <% if @photos.length != 0 %>
-      <% for photo in @photos %>
-      <div class="single-photo timeline__single-photo">
-        <div class="timeline__photo-avatar">
-          <%= link_to image_tag(photo.user.avatar.url(:thumb), class: 'timeline__photo-avatar-picture'), user_page_path(photo.user) %>
-          <%= link_to photo.user.username, user_page_path(photo.user) %>
-        </div>
-
-        <div class="timeline__photo-container">
-          <%= image_tag photo.image.url(:large), class: 'timeline__photo' %>
-        </div>
-
-        <div class="timeline__photo-user-interaction">
-          <div class="photo-page__interation">
-            <% if photo.likes.find_by_user_id(current_user.id) %>
-              <% @selected = "selected" %>
-            <% else %>
-              <% @selected = "" %>
-            <% end %>
-            <%= button_to '<3', like_photo_path(photo), class: 'like-button timeline__photo-like-button ' + @selected %>
-            <p class="like-counter timeline__photo-like-count"><span><%= photo.likes.count %></span> likes</p>
+      <% for photo in @photos.sort_by { |photo| photo.created_at }.reverse %>
+        <div class="single-photo timeline__single-photo">
+          <div class="timeline__photo-container">
+            <%= image_tag photo.image.url(:large), class: 'timeline__photo' %>
           </div>
+          <%= render 'application/information_section', photo: photo %>
         </div>
-
-        <%= render 'comments/comment-box', {photo: photo, classname: 'timeline__photo-'} %>
-        <%= render 'comments/form', photo: photo %>
-
-      </div>
       <% end %>
     <% end %>
   </div>

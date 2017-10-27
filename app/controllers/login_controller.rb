@@ -14,13 +14,13 @@ class LoginController < ApplicationController
       session[:user_id] = user.id
       redirect_to return_url
     else
-      flash.now.notice = 'Username or password invalid'
+      flash.now.alert = 'Username or password invalid'
       render :new
     end
   end
 
   def destroy
     reset_session
-    redirect_to root_path, notice: 'Logged out'
+    redirect_to root_path
   end
 end

@@ -1,16 +1,16 @@
 <div class="notifications">
   <% if @pending_followeds.count != 0 %>
     <% for pending_followed in @pending_followeds %>
-    <div class="notifications__notification">
-      <%= link_to user_page_path(pending_followed.follower_id), class: "notifications__notification-link" do %>
-        <%= image_tag User.find_by_id(pending_followed.follower_id).avatar.url(:small), class: "notifications__notification-avatar" %>
+    <div class="notification">
+      <%= link_to user_page_path(pending_followed.follower_id), class: "notification__link" do %>
+        <%= image_tag User.find_by_id(pending_followed.follower_id).avatar.url(:small), class: "notification__avatar" %>
       <% end %>
 
-      <span class="notifications__notification-text">
+      <span class="notification__text">
         <%= User.find_by_id(pending_followed.follower_id).username %> wants to follow you.
       </span>
 
-      <div class="notifications__notification-right-side">
+      <div class="notification__right-side">
           <%= link_to 'Accept', accept_relationship_path(current_user.id), class: 'pending-relationship-control', data: { 'relationship_id': pending_followed.id } %>
           <%= link_to 'Decline', decline_relationship_path(current_user.id), class: 'pending-relationship-control', data: { 'relationship_id': pending_followed.id } %>
       </div>
@@ -19,27 +19,27 @@
   <% end %>
   <% if @notifications.count != 0 %>
     <% for notification in @notifications %>
-      <div class="notifications__notification">
+      <div class="notification">
 
-        <%= link_to user_page_path(notification.user_id), class: "notifications__notification-link" do %>
-          <%= image_tag notification.user.avatar.url(:small), class: "notifications__notification-avatar" %>
+        <%= link_to user_page_path(notification.user_id), class: "notification__link" do %>
+          <%= image_tag notification.user.avatar.url(:small), class: "notification__avatar" %>
         <% end %>
-        <span class="notifications__notification-text"><%= notification.text %></span>
+        <span class="notification__text"><%= notification.text %></span>
 
         <% if notification.subject != 'relationship' %>
-          <%= link_to photo_path(notification.target_id), class: "notifications__notification-right-side" do %>
-            <%= image_tag Photo.find_by_id(notification.target_id).image.url(:medium), class: "notifications__notification-photo" %>
+          <%= link_to photo_path(notification.target_id), class: "notification__right-side" do %>
+            <%= image_tag Photo.find_by_id(notification.target_id).image.url(:medium), class: "notification__photo" %>
           <% end %>
         <% end %>
 
         <% if notification.subject == 'relationship' %>
-          <div class="notifications__notification-right-side">
+          <div class="notification__right-side">
             <% if current_user.following_relationships.find_by_followed_id(notification.target_id) %>
-              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'relationship-control'%>
+              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'button relationship-control'%>
             <% elsif current_user.pending_following_relationships.find_by_followed_id(notification.target_id) %>
-              <%= button_to 'Pending', unfollow_user_path, class: 'relationship-control', data: { 'inverse': 'Follow', 'inverse-action': follow_user_path } %>
+              <%= button_to 'Pending', unfollow_user_path, class: 'button relationship-control' %>
             <% else %>
-              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'relationship-control'%>
+              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'button button--secondary relationship-control'%>
             <% end %>
           </div>
         <% end %>

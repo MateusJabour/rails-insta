@@ -1,31 +1,18 @@
-<%= form_for @user, url: edit_user_path, html: {class: "user-edit-form"} do |f| %>
-	<p>
-  	<%= f.label :name %>
-  	<%= f.text_field :name, value: @user.name %>
-	</p>
-	<p>
-  	<%= f.label :website %>
-  	<%= f.text_field :website, value: @user.website %>
-	</p>
-	<p>
-  	<%= f.label :biography %>
-  	<%= f.text_field :biography, value: @user.biography %>
-	</p>
-	<p>
-  	<%= f.label :phone_number %>
-  	<%= f.text_field :phone_number, value: @user.phone_number %>
-  </p>
-	<p>
-  	<%= f.label :gender %>
-  	<%= f.select :gender, ['Male', 'Female']%>
-  </p>
-  <p>
-    <%= f.label :is_private? %>
-  	<%= f.check_box :is_private?, checked: @user.is_private? %>
-  </p>
+<div class="user-settings">
+  <div class="user-settings__options">
+    <ul>
+      <li class="tab tab--selected" data-tab-target="edit-profile">Edit profile</li>
+      <li class="tab" data-tab-target="change-password">Change password</li>
+    </ul>
+  </div>
+  <div class="user-settings__content">
+    <div class="tab-content" data-tab="edit-profile">
+      <%= render 'user/tabs/edit_profile' %>
+    </div>
 
-  <%= f.file_field :avatar %>
+    <div data-tab="change-password" class="tab-content hidden">
+      <%= render 'user/tabs/change_password' %>
+    </div>
 
-	<%= f.submit %>
-
-<% end %>
+  </div>
+</div>

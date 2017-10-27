@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   post '/signup' => 'signup#create'
 
   post '/login' => 'login#create'
-  post '/logout' => 'login#destroy'
+  get '/logout' => 'login#destroy'
 
   get '/users' => 'user#list', as: 'users_list'
   get '/user/:id' => 'user#index', as: 'user_page'
   get '/user/:id/edit' => 'user#edit', as: 'edit_user'
   patch '/user/:id/edit' => 'user#update'
+  patch '/user/:id/change_password' => 'user#change_password', as: 'change_password'
 
   post '/user/:id/follow' => 'relationship#create', as: 'follow_user'
   post '/user/:id/unfollow' => 'relationship#destroy', as: 'unfollow_user'

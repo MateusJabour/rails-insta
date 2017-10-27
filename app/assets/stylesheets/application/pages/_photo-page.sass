@@ -1,65 +1,29 @@
 .photo-page__container
-  width: 937px
-  height: 600px
-  margin: 0 auto
   background-color: #fff
   border: 1px solid $border-color
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  flex-direction: column
+  width: 95%
+  margin: 0 auto
 
-.photo-page__infos
-  height: 600px
-  width: 337px
-  float: right
+  @media #{$tablet-breakpoint}
+    width: 100%
+    flex-direction: row
+    max-height: 600px
 
 .photo-page__photo
-  width: 598px
-  height: 598px
-  margin: 0 auto
-  float: left
-  border-right: 1px solid $border-color
+  max-width: 100%
+  img
+    display: block
+    margin: 0 auto
+    max-width: 75%
 
-.photo-page__user-profile
-  margin: 0 0 10px 0
-  padding: 20px 15px
-  border-bottom: 1px solid $border-color
-
-.photo-page__user-profile-photo
-  border: 1px solid $border-color
-  border-radius: 75px
-
-.photo-page__user-profile-username
-  line-height: 1px
-
-.photo-page__stats
-  padding-left: 15px
-
-.photo-page__photo-stats
-  padding: 10px 0
-  height: 50px
-
-.photo-page__created-at
-  float: right
-  margin-right: 10px
-
-
-.photo-page__like-button.selected
-  background-color: red
-
-.photo-page__likes
-  font-weight: 600
-
-.photo-page__comment-box
-  overflow-y: scroll
-  overflow-x: hidden
-  height: 410px
-  width: 100%
-
-.photo-page__comment-list
-  list-style: none
-  padding: 0 10px 0 0
-  margin: 0
-
-.photo-page__like-button
-  float: left
-
-.photo-page__interation
-  margin-top: 10px
+  @media #{$tablet-breakpoint}
+    max-width: 598px
+    flex-grow: 2
+    img
+      max-width: 100%

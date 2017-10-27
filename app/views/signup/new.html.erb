@@ -1,35 +1,18 @@
-<h2>Instagram</h2>
-<%= render 'form_errors', record: @user %>
+<div class="form__container form__container--signup">
+  <%= image_tag "written_insta.png", class: "form__title" %>
 
-<%= form_for @user, url: signup_path do |f| %>
-  <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </p>
+  <%= form_for @user, url: signup_path do |f| %>
+    <%= f.text_field :username, placeholder: 'Username', class: "form__field" %>
+    <%= f.email_field :email, placeholder: 'Email', class: "form__field" %>
+    <%= f.password_field :password, placeholder: 'Password', class: "form__field" %>
+    <%= f.password_field :password_confirmation, placeholder: 'Confirm your password', class: "form__field" %>
+    <%= f.submit "Sign up", class: "form__submit-button" %>
+    <%= render 'form_errors', record: @user %>
+  <% end %>
+</div>
 
-  <p>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </p>
-
-	<p>
-    <%= f.label :gender %>
-    <%= f.select :gender, ['Male', 'Female'] %>
-  </p>
-
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
-
-  <%= f.submit %>
-<% end %>
-
-<p>
-  If you already have an account, <%= link_to 'Log in', root_path %>
-</p>
+<div class="form__helper">
+    <p>
+      If you already have an account, <%= link_to 'Log in', root_path, class: "link" %>
+    </p>
+</div>

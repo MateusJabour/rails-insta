@@ -1,0 +1,23 @@
+<div class="information_section">
+  <div class="information_section__user-profile">
+    <%= link_to image_tag(photo.user.avatar.url(:thumb), class: 'information_section__user-profile-photo'), user_page_path(photo.user) %>
+    <%= link_to photo.user.username, user_page_path(photo.user), class: 'information_section__user-profile-username' %>
+  </div>
+
+  <div class="information_section__stats">
+    <div class="information_section__photo-stats clearfix">
+      <span class="like-counter information_section__likes">
+        <span><%= photo.likes.count %></span> likes
+      </span>
+
+      <span class="information_section__created-at">
+        <%= photo_date(photo.created_at).to_s %>
+      </span>
+    </div>
+
+    <%= render 'comments/comment-box', photo: photo %>
+
+    <%= render 'interation_bar', photo: photo %>
+
+  </div>
+</div>
