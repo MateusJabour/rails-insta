@@ -11,6 +11,8 @@ gem 'turbolinks', '~> 5'
 gem 'bcrypt', '~> 3.1.7'
 gem "validators"
 gem "paperclip", "~> 5.0.0"
+gem "sprockets"
+gem "sprockets-es6"
 
 group :development, :test do
   gem 'pry-meta'
