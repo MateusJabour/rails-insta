@@ -17,12 +17,14 @@ gem "sprockets-es6"
 group :development, :test do
   gem 'pry-meta'
   gem 'pry-rails'
+  gem 'teaspoon-jasmine'
 end
 
 group :test do
-  gem "factory_girl"
+  gem 'coffee-script'
+  gem "factory_bot_rails"
   gem "capybara"
-  gem 'minitest-utils', require: false
+  gem 'minitest-utils'
 end
 
 group :development do
