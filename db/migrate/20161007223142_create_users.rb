@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :biography
 			t.string :website
       t.string :phone_number
-      t.string :gender, null: false
+      t.string :gender
 
       t.boolean :is_private, null: false, default: false
 
