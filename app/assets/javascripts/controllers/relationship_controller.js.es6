@@ -1,9 +1,21 @@
 const RelationshipController = (() => {
-  function changeRelationship(e) {
+  const changeRelationshipButton = (el, { button_action: action, button_name: name }) => {
+    const relationshipForm = el.parentNode;
+    relationshipForm.action = action;
+    $(el).val(name);
+
+    if (name === 'Follow') {
+      $(el).addClass('button--secondary');
+    } else {
+      $(el).removeClass('button--secondary');
+    }
+  };
+
+  const changeRelationship = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const relationshipForm = this.parentNode;
+    const relationshipForm = e.currentTarget.parentNode;
 
     $.ajax({
       url: relationshipForm.action,
@@ -11,42 +23,33 @@ const RelationshipController = (() => {
       data: $(relationshipForm).serializeArray(),
       dataType: 'json',
       success: (data) => {
-        relationshipForm.action = data.button_action;
-        $(this).val(data.button_name);
-
-        if (data.button_name === 'Follow') {
-          $(this).addClass('button--secondary');
-        } else {
-          $(this).removeClass('button--secondary');
-        }
-
+        changeRelationshipButton(e.currentTarget, data);
         $('.follower-counter').text(data.follower_amount);
-      }
+      },
     });
-  }
+  };
 
-  function replyRelationshipInvite(e) {
+  const replyRelationshipInvite = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     $.ajax({
-      url: this.href,
+      url: e.currentTarget.href,
       type: 'POST',
-      data: [{name: 'relationship_id', value: $(this).data('relationshipId')}],
+      data: [{ name: 'relationship_id', value: $(e.currentTarget).data('relationshipId') }],
       dataType: 'json',
-      success: () => $('.pending-relationship-control').remove()
+      success: () => $('.pending-relationship-control').remove(),
     });
-  }
+  };
 
-  function loadEvents() {
+  const loadEvents = () => {
     $(document).on('click', '.pending-relationship-control', replyRelationshipInvite);
     $(document).on('click', '.relationship-control', changeRelationship);
-  }
+  };
 
   return ({
-    loadEvents: loadEvents
+    loadEvents,
   });
-
 })();
 
 RelationshipController.loadEvents();

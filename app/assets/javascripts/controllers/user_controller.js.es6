@@ -1,37 +1,37 @@
 const UserController = (() => {
-  function loadEvents () {
-    $('.privacy-toggle').on('change', togglePrivacy);
-    $('.tab').on('click', changeTab);
-    $('.change-password-form').on('submit', changePassword);
-  }
+  const togglePrivacy = (e) => {
+    e.currentTarget.value = !(e.currentTarget.value === 'true');
+  };
 
-  function togglePrivacy(e) {
-    this.value = !(this.value === 'true');
-  }
-
-  function changePassword(e) {
+  const changePassword = (e) => {
     e.preventDefault();
 
     $.ajax({
-      url: this.action,
-      type: this.method,
-      data: $(this).serializeArray(),
+      url: e.currentTarget.action,
+      type: e.currentTarget.method,
+      data: $(e.currentTarget).serializeArray(),
       dataType: 'json',
-      success: (data) => $('.form-notification').text(data.message)
+      success: data => $('.form-notification').text(data.message),
     });
-  }
+  };
 
-  function changeTab(e) {
+  const changeTab = (e) => {
     e.preventDefault();
 
     $('.tab-content').addClass('hidden');
-    $(`[data-tab=${$(this).data('tab-target')}]`).removeClass('hidden');
+    $(`[data-tab=${$(e.currentTarget).data('tab-target')}]`).removeClass('hidden');
     $('.tab').removeClass('tab--selected');
-    $(this).addClass('tab--selected');
-  }
+    $(e.currentTarget).addClass('tab--selected');
+  };
+
+  const loadEvents = () => {
+    $('.privacy-toggle').on('change', togglePrivacy);
+    $('.tab').on('click', changeTab);
+    $('.change-password-form').on('submit', changePassword);
+  };
 
   return {
-    loadEvents: loadEvents
+    loadEvents,
   };
 })();
 
