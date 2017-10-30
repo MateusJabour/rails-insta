@@ -1,5 +1,13 @@
-<%= form_for @photo, url: create_photo_path do |f| %>
-  <%= f.file_field :image %>
-  <%= f.text_field :description %>
-  <%= f.submit %>
+<div class="container">
+<%= form_for @photo, url: create_photo_path, html: { class: 'add-photo' } do |f| %>
+
+  <div class="add-photo__preview" data-image-preview="" tabindex=0> Add photo </div>
+
+  <%= f.label :image, hidden: true %>
+  <%= f.file_field :image, class:"add-photo__file-field", data: {'image-uploader': '' }, hidden: true  %>
+  <%= f.label :description %>
+  <%= f.text_area :description, class: "add-photo__description" %>
+
+  <%= f.submit 'Upload photo', class: "button add-photo__submit" %>
 <% end %>
+</div>

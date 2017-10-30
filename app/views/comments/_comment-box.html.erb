@@ -1,5 +1,5 @@
 <div class="comment-box">
-		<ul class="comment-list">
+		<ul class="comment-list" id="<%= "comment-list-#{photo.id}"%>">
 				<li class="single-comment">
 						<h1>
 								<%= link_to photo.user.username, user_page_path(photo.user), class: 'comment-username' %>
