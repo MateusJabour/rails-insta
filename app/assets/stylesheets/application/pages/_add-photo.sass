@@ -1,0 +1,44 @@
+.add-photo
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  align-items: center
+  flex-direction: column
+  width: 100%
+  padding: 0 5%
+
+.add-photo__preview
+  width: 300px
+  height: 300px
+  border: 1px solid $border-color
+  margin-bottom: 2em
+  display: -webkit-flex
+  display: -ms-flex
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: 0.3s opacity
+  cursor: pointer
+
+  @media #{$tablet-breakpoint}
+    width: 400px
+    height: 400px
+
+  img
+    width: 100%
+    height: 100%
+
+.add-photo__preview:hover
+  opacity: 0.5
+
+.add-photo__description
+  width: 300px
+  height: 5em
+  margin-bottom: 2em
+  margin-top: 1em
+
+  @media #{$tablet-breakpoint}
+    width: 400px
+
+
+.add-photo__submit
