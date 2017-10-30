@@ -3,7 +3,7 @@
   <div class="user-profile__right-side">
     <div class="user-profile__actions">
 
-    <h2 class="user-profile__username"><%= @user.username %></h2>
+    <span class="user-profile__username"><%= @user.username %></span>
 
     <% if current_user.id == @user.id %>
       <%= link_to 'Edit profile', edit_user_path, class: 'button user-profile__edit-profile' %>
