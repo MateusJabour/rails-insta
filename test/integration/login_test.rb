@@ -18,4 +18,13 @@ class LoginTest < ActionDispatch::IntegrationTest
     assert page.has_current_path?(login_path)
     assert page.has_text?('Username or password invalid')
   end
+
+  test "logout from user" do
+    user = FactoryBot.create(:user)
+
+    login_as(user)
+    click_link 'Log out'
+
+    assert page.has_current_path?(root_path)
+  end
 end

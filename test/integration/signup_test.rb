@@ -30,7 +30,6 @@ class SignupTest < ActionDispatch::IntegrationTest
   %w[
     a@a
     a@a.a
-    invalid
     a..a@example.com
     a__a@example.com
     a.-a@example.com
