@@ -1,24 +1,20 @@
 .notification
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
-  align-items: center
-  text-decoration: none
-  flex-direction: row
-  justify-content: flex-start
-  font-size: 20px
+  @include flexbox()
   padding: 10px
   margin: 5px
   border: 1px solid black
+  justify-content: flex-start
+  flex-direction: row
+  align-items: center
   font-size: 14px
+  text-decoration: none
 
 .notification__avatar
-  border-radius: 100px
   width: 50px
+  border-radius: 100px
 
 .notification__right-side
   margin-left: auto
-
 
 .notification__text
   margin-left: 10px

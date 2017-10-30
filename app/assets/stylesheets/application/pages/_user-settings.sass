@@ -1,22 +1,19 @@
 .user-settings
   background-color: #fff
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
+  @include flexbox()
   border: 1px solid $border-color
 
 .user-settings__options
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
-  justify-content: center
-  border-right: 1px solid #000
+  @include flexbox()
   width: 25%
+  border-right: 1px solid #000
+  justify-content: center
+
   ul
-    list-style: none
+    width: 100%
     padding: 0
     margin: 0
-    width: 100%
+    list-style: none
 
     .tab
       width: 100%
@@ -24,27 +21,24 @@
       cursor: pointer
 
       &--selected
+        padding: 20px 15% 20px calc(15% - 2px)
         border-left: 2px solid #000
         font-weight: bold
-        padding: 20px 15% 20px calc(15% - 2px)
-
 
 .user-settings__content
   width: 75%
 
 .user-settings__field
+  @include flexbox()
   width: 90%
   margin: 20px auto
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
   align-items: center
 
   .left-side
     width: 25%
-    text-align: right
     margin-right: 10px
     font-weight: bold
+    text-align: right
 
     label
       width: 100%
@@ -53,16 +47,15 @@
 
   .right-side
     width: 60%
-    
+
     .text_field
       @extend .field
       width: 100%
       padding: 5px 10px
 
-
   .right-side.checkbox
-    width: 80%
     display: inline-flex
+    width: 80%
     align-items: center
 
     input

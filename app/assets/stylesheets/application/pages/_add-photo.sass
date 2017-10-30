@@ -1,20 +1,16 @@
 .add-photo
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
-  align-items: center
-  flex-direction: column
+  @include flexbox()
   width: 100%
   padding: 0 5%
+  flex-direction: column
+  align-items: center
 
 .add-photo__preview
+  @include flexbox()
   width: 300px
   height: 300px
   border: 1px solid $border-color
   margin-bottom: 2em
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
   align-items: center
   justify-content: center
   transition: 0.3s opacity
@@ -39,6 +35,3 @@
 
   @media #{$tablet-breakpoint}
     width: 400px
-
-
-.add-photo__submit
