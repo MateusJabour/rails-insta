@@ -1,9 +1,14 @@
 <% if record.errors.any? %>
+
   <div class="form__errors">
     <ul>
-      <li>
-        <%= record.errors.full_messages.first %>
-      </li>
+      <% for field, message in record.errors.messages %>
+        <% if !message.empty? %>
+          <li>
+            <%= "#{field.to_s.capitalize} #{message.first.to_s}" %>
+          </li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 <% end %>

@@ -1,13 +1,14 @@
 <div class="interation-bar">
-  <%= link_to like_photo_path(photo), class: 'like-button' do %>
+  <%= link_to like_photo_path(photo), class: 'like-button', data: {like_counter_id: "like-counter-#{photo.id}" } do %>
     <% if photo.likes.where({user_id: current_user}).first %>
-      <%= image_tag "heart-icon-filled" %>
+      <%= image_tag "heart-icon-filled", alt: 'Like button'%>
     <% else %>
-      <%= image_tag "heart-icon" %>
+      <%= image_tag "heart-icon", alt: 'Like button' %>
     <% end %>
   <% end%>
 
-  <%= form_for Comment.new, url: create_comment_path(photo) do |f| %>
-    <%= f.text_field :text, placeholder: "Add a comment" %>
+  <%= form_for Comment.new, url: create_comment_path(photo), html: { data: {comment_list_id: "comment-list-#{photo.id}" } } do |f| %>
+    <%= f.label :text, 'Comment', hidden: true %>
+    <%= f.text_field :text, placeholder: "Add a comment", class: 'comment-text-input' %>
   <% end %>
 </div>

@@ -1,29 +1,29 @@
 .form__container
-  border: 1px solid $border-color
-  margin-top: 130px
-  padding: 30px 15px
   min-height: 320px
+  padding: 30px 15px
+  margin-top: 130px
+  border: 1px solid $border-color
   background: #fff
 
 .form__title
+  display: block
   width: 200px
   margin: 0 auto
-  display: block
 
 .form__field
   @extend .field
-  padding: 10px
   display: block
-  margin: 5px auto
+  padding: 10px
   width: 300px
+  margin: 5px auto
   @media #{$tablet-breakpoint}
-    margin: 5px 0
     width: 100%
+    margin: 5px 0
 
 .form__submit-button
   display: block
-  margin: 10px auto
   width: 300px
+  margin: 10px auto
   padding: 5px
   border: 1px solid $insta-blue
   border-radius: 3px
@@ -37,15 +37,15 @@
     margin: 10px 0
 
 .form__helper
-  margin-top: 20px
   height: 50px
-  border: 1px solid $border-color
   padding: 0 15px
+  margin-top: 20px
+  border: 1px solid $border-color
   text-align: center
   background: #fff
 
 .form__errors ul
-  list-style: none
   padding: 0
-  text-align: center
   color: $error-red
+  text-align: center
+  list-style: none

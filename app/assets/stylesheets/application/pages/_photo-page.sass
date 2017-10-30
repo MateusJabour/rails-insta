@@ -1,29 +1,29 @@
 .photo-page__container
-  background-color: #fff
+  @include flexbox()
+  width: 95%
+  margin: 0 auto
   border: 1px solid $border-color
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
   align-items: center
   justify-content: flex-start
   flex-direction: column
-  width: 95%
-  margin: 0 auto
+  background-color: #fff
 
   @media #{$tablet-breakpoint}
     width: 100%
-    flex-direction: row
     max-height: 600px
+    flex-direction: row
 
 .photo-page__photo
   max-width: 100%
+
   img
     display: block
-    margin: 0 auto
     max-width: 75%
+    margin: 0 auto
 
   @media #{$tablet-breakpoint}
     max-width: 598px
     flex-grow: 2
+    
     img
       max-width: 100%

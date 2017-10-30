@@ -1,64 +1,92 @@
-(() => {
-  const PhotoController = (() => {
-    function generateComment(comment, username) {
-      return `<li class="single-comment">
-          <a href="user/${comment.user_id}" class="comment-username">${username}</a>
-          <span class="comment-text">${comment.text}</span>
-        </li>`;
-    }
+const PhotoController = (() => {
+  const imageUploader = $('[data-image-uploader]');
+  const imagePreview = $('[data-image-preview]');
 
-    function postComment(e) {
-      e.preventDefault();
-      e.stopPropagation();
+  const generateComment = (comment, username) => `
+    <li class="single-comment">
+      <a href="user/${comment.user_id}" class="comment-username">${username}</a>
+      <span class="comment-text">${comment.text}</span>
+    </li>
+  `;
 
-      $.ajax({
-        url: this.action,
-        type: this.method,
-        data: $(this).serializeArray(),
-        dataType: 'json',
-        success: (data) => {
-          const commentBox = $(this).parent().siblings('.comment-box').find('.comment-list');
+  const updateComments = (el, data) => {
+    $(el).children('.comment-text-input').val('');
+    $(`#${el.dataset.commentListId}`).append(generateComment(data.comment, data.username));
+  };
 
-          $('#comment_text').val('');
-          commentBox.append(generateComment(data.comment, data.username));
-        }
-      });
+  const postComment = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $.ajax({
+      url: e.currentTarget.action,
+      type: e.currentTarget.method,
+      data: $(e.currentTarget).serializeArray(),
+      dataType: 'json',
+      success: data => updateComments(e.currentTarget, data),
+    });
+  };
+
+
+  const previewPhoto = (e) => {
+    const image = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (file) => {
+      const img = new Image();
+      img.src = file.target.result;
+      imagePreview.html(img);
     };
 
-    function postLike(e) {
-      e.preventDefault();
-      e.stopPropagation();
+    reader.readAsDataURL(image);
+  };
 
-      $.ajax({
-        url: this.href,
-        type: "POST",
-        dataType: 'json',
-        success: (data) => {
-          const likeCounter = $(this).closest('.single-photo').find('.like-counter span');
-          const likesAmountBefore = +(likeCounter.text());
-          const likeImage = $(this).children('img');
-
-          likeCounter.text(data);
-
-          if (likesAmountBefore < data) {
-            likeImage.attr('src', "/assets/heart-icon-filled.png");
-          } else {
-            likeImage.attr('src', "/assets/heart-icon.png");
-          }
-        }
-      });
+  const changeLikeButtonImage = (el, amountIncreased) => {
+    const likeButtonImage = $(el).children('img');
+    if (amountIncreased) {
+      likeButtonImage.attr('src', '/assets/heart-icon-filled.png');
+    } else {
+      likeButtonImage.attr('src', '/assets/heart-icon.png');
     }
+  };
 
-    function loadEvents() {
-      $('.like-button').on('click', postLike);
-      $('.new_comment').on('submit', postComment);
-    }
+  const updateLikeCounter = (counter, likeAmount) => {
+    counter.text(likeAmount);
+  };
 
-    return ({
-      loadEvents: loadEvents
+  function postLike(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $.ajax({
+      url: e.currentTarget.href,
+      type: 'POST',
+      dataType: 'json',
+      success: (data) => {
+        const likeCounter = $(`#${e.currentTarget.dataset.likeCounterId} span`);
+        const likeAmountIncreased = data > +(likeCounter.text());
+
+        changeLikeButtonImage(e.currentTarget, likeAmountIncreased);
+        updateLikeCounter(likeCounter, data);
+      },
     });
+  }
 
-  })();
+  const loadEvents = () => {
+    $('.like-button').on('click', postLike);
+    $('.new_comment').on('submit', postComment);
+    imageUploader.on('change', previewPhoto);
 
-  PhotoController.loadEvents();
+    imagePreview.on('click keydown', (e) => {
+      if (e.keyCode === 13 || e.type === 'click') {
+        imageUploader.trigger('click');
+      }
+    });
+  };
+
+  return ({
+    loadEvents,
+  });
 })();
+
+PhotoController.loadEvents();

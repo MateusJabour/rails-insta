@@ -22,6 +22,6 @@ module Authentication
 
     session[:return_to] = request.fullpath if request.get?
 
-    redirect_to login_path, notice: 'You must be logged in to access this page.'
+    redirect_to login_path
   end
 end

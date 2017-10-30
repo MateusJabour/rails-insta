@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/signup' => 'signup#new'
   post '/signup' => 'signup#create'
 
+  get '/login' => 'login#new'
   post '/login' => 'login#create'
   get '/logout' => 'login#destroy'
 
@@ -22,10 +23,10 @@ Rails.application.routes.draw do
 
   get '/user/:id/notifications' => 'notification#index', as: 'notifications'
 
-  get 'photo/:id' => 'photo#index', as: 'photo'
   get 'user/:id/create_photo' => 'photo#new', as: 'create_photo'
   post 'user/:id/create_photo' => 'photo#create'
 
+  get 'photo/:id' => 'photo#index', as: 'photo'
   post 'photo/:id/create_comment' => 'photo#comment', as: 'create_comment'
   post 'photo/:id/like' => 'photo#like', as: 'like_photo'
 

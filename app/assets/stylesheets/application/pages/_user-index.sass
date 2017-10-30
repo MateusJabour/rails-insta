@@ -1,9 +1,7 @@
 .user-profile
+  @include flexbox()
   width: 100%
   margin: 20px 0
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
   align-items: center
   justify-content: space-around
 
@@ -11,19 +9,28 @@
     margin: 5px auto
 
 .user-profile__photo
+  width: 120px
+  height: 120px
   border: 1px solid $border-color
   border-radius: 76px
 
   @media #{$tablet-breakpoint}
     margin-right: 50px
+    width: 150px
+    height: 150px
 
 .user-profile__right-side
   height: 100%
   margin-left: 20px
 
   @media #{$tablet-breakpoint}
-    margin-left: 0
     width: 55%
+    margin-left: 0
+
+.user-profile__actions
+  @include flexbox()
+  align-items: center
+  justify-content: flex-start
 
 .user-profile__counters
   margin-top: 15px
@@ -36,31 +43,35 @@
     font-weight: bold
 
 .user-profile__username
-  margin: 0
-  font-weight: 200
   display: inline-block
+  margin: 0
+  font-size: 28px
+  font-weight: 200
 
 .user-profile__edit-profile
   margin-left: 20px
 
 .user-profile__add-photo
+  display: inline-block
+  width: 20px
   margin-left: 10px
+
   img
-    width: 20px
+    width: 100%
 
   @media #{$tablet-breakpoint}
-    img
-      width: 30px
+    width: 30px
 
 .user-profile__logout
+  display: inline-block
   margin-left: 10px
+  width: 20px
+
   img
-    width: 20px
+    width: 100%
 
   @media #{$tablet-breakpoint}
-    img
-      width: 30px
-
+    width: 30px
 
 .user-photos
   max-width: 95%
@@ -70,17 +81,14 @@
     max-width: 935px
 
 .user-photos__row
-  display: -webkit-flex
-  display: -ms-flex
-  display: flex
-  flex-wrap: wrap
-  justify-content: space-between
+  @include flexbox()
   margin-bottom: 10px
+  flex-wrap: wrap
 
 .user-photos__single
+  @include flexbox()
   width: 30%
-  height: 30%
-  display: flex
+  margin: 0 1.66%
   justify-content: center
   align-items: center
 

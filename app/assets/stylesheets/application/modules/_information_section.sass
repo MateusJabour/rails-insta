@@ -1,9 +1,9 @@
 .information_section
-  flex-direction: column
-  display: flex
-  flex-grow: 1
+  @include flexbox()
   width: 100%
   border-top: 1px solid $border-color
+  flex-direction: column
+  flex-grow: 1
 
   @media #{$tablet-breakpoint}
     border-top: none
@@ -19,33 +19,33 @@
   flex: 2
 
 .information_section__user-profile
+  @include flexbox()
   margin: 0 0 10px 0
   padding: 20px 15px
   border-bottom: 1px solid $border-color
-  display: flex
   align-items: center
 
 .information_section__user-profile-photo
+  margin-right: 10px
   border: 1px solid $border-color
   border-radius: 75px
-  margin-right: 10px
 
 .information_section__user-profile-username
   line-height: 100%
 
 .information_section__photo-stats
-  padding: 10px 0
   height: 50px
+  padding: 10px 0
   padding-left: 20px
 
 .information_section__created-at
-  float: right
   margin-right: 10px
+  float: right
 
 .information_section__likes
   font-weight: 600
 
 .information_section__comment-list
-  list-style: none
   padding: 0 10px 0 0
   margin: 0
+  list-style: none

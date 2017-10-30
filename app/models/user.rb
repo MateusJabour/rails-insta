@@ -29,8 +29,8 @@ class User < ApplicationRecord
 
   has_attached_file :avatar, styles: { medium: "150x150>", small: "75x75>", thumb: "38x38>" }, default_url: "/assets/missing_avatar_:style.jpg"
 
-  validates_presence_of :username, :gender
-  validates_email_format_of :email
+  validates_presence_of :username, :email
+  validates_email_format_of :email, message: 'is not valid'
   validates_uniqueness_of :email, :username
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 end
