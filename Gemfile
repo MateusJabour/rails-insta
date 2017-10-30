@@ -25,6 +25,7 @@ group :test do
   gem "factory_bot_rails"
   gem "capybara"
   gem 'minitest-utils'
+  gem 'selenium-webdriver'
 end
 
 group :development do

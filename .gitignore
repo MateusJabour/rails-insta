@@ -18,3 +18,5 @@
 /public
 logfile
 
+# Ignore node_modules
+node_modules
