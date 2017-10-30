@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :require_login
+
   def index
     @user = User.find_by_id(params[:id])
   end
@@ -23,20 +25,24 @@ class UserController < ApplicationController
     new_password = params[:user][:password]
     message = ''
 
-    if new_password == old_password
-      message = 'You\'re already using this password, put a different one.'
+    if old_password.empty?
+      message = 'Enter your password'
+    elsif new_password.empty?
+      message = 'Enter a new password'
+    elsif new_password == old_password
+      message = 'You\'re already using this password, put a different one'
     elsif current_user.authenticate(old_password)
       if current_user.update(change_password_params)
         message = 'Your password was changed successfully'
       else
         if new_password != params[:user][:password_confirmation]
-          message = 'Password confirmation is different from password.'
+          message = 'Password confirmation is different from password'
         else
-          message = 'Something happened'
+          message = 'Something wrong happened'
         end
       end
     else
-      message = 'Your current password is wrong, re-enter it.'
+      message = 'Your current password is wrong, re-enter it'
     end
 
     respond_to do |format|

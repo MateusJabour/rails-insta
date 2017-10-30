@@ -1,4 +1,6 @@
 class PhotoController < ApplicationController
+  before_action :require_login
+
   def index
     @photo = Photo.find_by_id(params[:id])
     @like = Like.new
