@@ -13,7 +13,8 @@ class CreatePhotoTest < ActionDispatch::IntegrationTest
     fill_in 'Description', with: photo[:description]
 
     click_on 'Upload photo'
-
+    wait_for_ajax
+    
     assert page.has_current_path?(user_page_path(user))
     assert page.find_by_id(Photo.last.id)
   end

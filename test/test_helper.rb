@@ -24,5 +24,6 @@ class ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
-  Capybara.default_driver = :selenium_chrome_headless
+  Capybara.default_driver = :selenium_chrome
+  Capybara.default_max_wait_time = 10
 end

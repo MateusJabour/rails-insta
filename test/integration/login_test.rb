@@ -15,7 +15,7 @@ class LoginTest < ActionDispatch::IntegrationTest
 
     login_as(user)
 
-    assert page.has_current_path?(login_path)
+    assert page.has_current_path?(root_path)
     assert page.has_text?('Username or password invalid')
   end
 

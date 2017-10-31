@@ -8,7 +8,8 @@ class InteractionsTest < ActionDispatch::IntegrationTest
       visit photo_path(photo)
 
       fill_in "Comment", with: "My Comment"
-      page.execute_script("$('#new_comment').submit()")
+      page.execute_script("$('#comment-form-#{photo.id}').submit()")
+      wait_for_ajax
 
       assert page.has_current_path?(photo_path(photo))
       assert page.has_text?(photo.user.username)
@@ -26,6 +27,7 @@ class InteractionsTest < ActionDispatch::IntegrationTest
       within("#single-photo-#{photo.id}") do
         click_on "Like button"
       end
+      wait_for_ajax
 
       assert page.has_current_path?(photo_path(photo))
       assert old_like_amount < photo.likes.count
@@ -38,7 +40,8 @@ class InteractionsTest < ActionDispatch::IntegrationTest
       visit timeline_path
 
       fill_in "Comment", with: "My Comment"
-      page.execute_script("$('#new_comment').submit()")
+      page.execute_script("$('#comment-form-#{photo.id}').submit()")
+      wait_for_ajax
 
       assert page.has_current_path?(timeline_path)
       assert page.has_text?(photo.user.username)
@@ -56,6 +59,7 @@ class InteractionsTest < ActionDispatch::IntegrationTest
       within("#single-photo-#{photo.id}") do
         click_on "Like button"
       end
+      wait_for_ajax
 
       assert page.has_current_path?(timeline_path)
       assert_equal find("#like-counter-#{photo.id}").find('span').text.to_i, photo.likes.count

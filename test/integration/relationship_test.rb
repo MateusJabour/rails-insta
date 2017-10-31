@@ -8,10 +8,11 @@ class RelationshipTest < ActionDispatch::IntegrationTest
     login_as(user1)
     visit user_page_path(user2)
 
-    click_on 'Follow'
+    execute_script("$('.relationship-control').click()")
+    wait_for_ajax
 
     assert page.has_current_path?(user_page_path(user2))
-    assert page.has_button?('Unfollow')
+    assert_equal find('.relationship-control').value, 'Unfollow'
   end
 
   test "unfollow a user" do
@@ -20,10 +21,11 @@ class RelationshipTest < ActionDispatch::IntegrationTest
     login_as(relationship.follower)
     visit user_page_path(relationship.followed)
 
-    click_on 'Unfollow'
+    execute_script("$('.relationship-control').click()")
+    wait_for_ajax
 
     assert page.has_current_path?(user_page_path(relationship.followed))
-    assert page.has_button?('Follow')
+    assert_equal find('.relationship-control').value, 'Follow'
   end
 
   test "following a private user" do
@@ -33,7 +35,8 @@ class RelationshipTest < ActionDispatch::IntegrationTest
     login_as(user1)
     visit user_page_path(user2)
 
-    click_on 'Follow'
+    execute_script("$('.relationship-control').click()")
+    wait_for_ajax
 
     assert page.has_current_path?(user_page_path(user2))
     assert page.has_button?('Pending')
@@ -49,6 +52,7 @@ class RelationshipTest < ActionDispatch::IntegrationTest
     assert page.has_link?('Decline')
 
     click_on 'Accept'
+    wait_for_ajax
 
     assert page.has_current_path?(user_page_path(relationship.follower))
     assert page.has_no_link?('Accept')

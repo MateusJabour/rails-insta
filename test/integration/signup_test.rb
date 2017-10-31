@@ -2,9 +2,10 @@ require 'test_helper'
 
 class SignupTest < ActionDispatch::IntegrationTest
   test "signup with valid data" do
+    user = FactoryBot.build(:user)
+
     visit root_path
     click_link 'Sign up'
-    user = FactoryBot.build(:user)
 
     fill_in 'Username', with: user.username
     fill_in 'Email', with: user.email
@@ -12,6 +13,7 @@ class SignupTest < ActionDispatch::IntegrationTest
     fill_in 'Password confirmation', with: user.password
 
     click_on 'Sign up'
+    wait_for_ajax
 
     assert page.has_current_path?(user_page_path(User.last))
     assert page.has_text?(user.username)
@@ -22,6 +24,7 @@ class SignupTest < ActionDispatch::IntegrationTest
     click_link 'Sign up'
 
     click_on 'Sign up'
+    wait_for_ajax
 
     assert page.has_current_path?(signup_path)
     assert page.has_text?("can't be blank")
@@ -41,6 +44,7 @@ class SignupTest < ActionDispatch::IntegrationTest
 
       fill_in 'Email', with: email
       click_on 'Sign up'
+      wait_for_ajax
 
       assert page.has_current_path?(signup_path)
       assert page.has_text?("Email is not valid")
