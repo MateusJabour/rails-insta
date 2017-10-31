@@ -1,6 +1,8 @@
 <div class="information_section">
   <div class="information_section__user-profile">
-    <%= link_to image_tag(photo.user.avatar.url(:thumb), class: 'information_section__user-profile-photo'), user_page_path(photo.user) %>
+    <%= link_to user_page_path(photo.user) do %>
+      <%= image_tag(photo.user.avatar.url(:thumb), alt: "#{photo.user.username}'s profile picture", class: 'information_section__user-profile-photo') %>
+    <% end%>
     <%= link_to photo.user.username, user_page_path(photo.user), class: 'information_section__user-profile-username' %>
   </div>
 
@@ -17,7 +19,7 @@
 
     <%= render 'comments/comment-box', photo: photo %>
 
-    <%= render 'interation_bar', photo: photo %>
+    <%= render 'photo/interaction_bar', photo: photo %>
 
   </div>
 </div>

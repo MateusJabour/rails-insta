@@ -1,0 +1,20 @@
+<div class="interaction-bar">
+  <%= link_to like_photo_path(photo), class: 'like-button', data: {like_counter_id: "like-counter-#{photo.id}" } do %>
+    <% if photo.likes.where({user_id: current_user}).first %>
+      <%= image_tag "heart-icon-filled", alt: 'Like button'%>
+    <% else %>
+      <%= image_tag "heart-icon", alt: 'Like button' %>
+    <% end %>
+  <% end%>
+
+  <%= form_for Comment.new,
+    url: create_comment_path(photo),
+    html: {
+      data: {comment_list_id: "comment-list-#{photo.id}" },
+      id: "comment-form-#{photo.id}",
+      class: "comment-form"
+    } do |f| %>
+    <%= f.label :text, 'Comment', for: "comment-text-input-#{photo.id}", hidden: true %>
+    <%= f.text_field :text, placeholder: "Add a comment", class: 'comment-form__text-input', id: "comment-text-input-#{photo.id}" %>
+  <% end %>
+</div>
