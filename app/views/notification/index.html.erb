@@ -11,8 +11,8 @@
       </span>
 
       <div class="notification__right-side">
-          <%= link_to 'Accept', accept_relationship_path(current_user.id), class: 'pending-relationship-control', data: { 'relationship_id': pending_followed.id } %>
-          <%= link_to 'Decline', decline_relationship_path(current_user.id), class: 'pending-relationship-control', data: { 'relationship_id': pending_followed.id } %>
+          <%= link_to 'Accept', accept_relationship_path(current_user.id), class: 'button', data: { 'relationship_id': pending_followed.id, pending_relationship_control: '' } %>
+          <%= link_to 'Decline', decline_relationship_path(current_user.id), class: 'button', data: { 'relationship_id': pending_followed.id, pending_relationship_control: ''  } %>
       </div>
     </div>
     <% end %>
@@ -35,11 +35,11 @@
         <% if notification.subject == 'relationship' %>
           <div class="notification__right-side">
             <% if current_user.following_relationships.find_by_followed_id(notification.target_id) %>
-              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'button relationship-control'%>
+              <%= button_to 'Unfollow', unfollow_user_path(notification.user_id), class: 'button', data: { relationship_control: '' }%>
             <% elsif current_user.pending_following_relationships.find_by_followed_id(notification.target_id) %>
-              <%= button_to 'Pending', unfollow_user_path, class: 'button relationship-control' %>
+              <%= button_to 'Pending', unfollow_user_path, class: 'button', data: { relationship_control: '' } %>
             <% else %>
-              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'button button--secondary relationship-control'%>
+              <%= button_to 'Follow', follow_user_path(notification.user_id), class: 'button button--secondary', data: { relationship_control: '' }%>
             <% end %>
           </div>
         <% end %>

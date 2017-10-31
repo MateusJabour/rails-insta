@@ -38,13 +38,13 @@ const RelationshipController = (() => {
       type: 'POST',
       data: [{ name: 'relationship_id', value: $(e.currentTarget).data('relationshipId') }],
       dataType: 'json',
-      success: () => $('.pending-relationship-control').remove(),
+      success: () => $('[data-pending-relationship-control], .follow-invite').remove(),
     });
   };
 
   const loadEvents = () => {
-    $(document).on('click', '.pending-relationship-control', replyRelationshipInvite);
-    $(document).on('click', '.relationship-control', changeRelationship);
+    $(document).on('click', '[data-pending-relationship-control]', replyRelationshipInvite);
+    $(document).on('click', '[data-relationship-control]', changeRelationship);
   };
 
   return ({

@@ -2,5 +2,5 @@
   <div class="photo-page__photo">
     <%= image_tag @photo.image.url(:large), alt: @photo.id %>
   </div>
-  <%= render 'application/information_section', photo: @photo %>
+  <%= render 'information_section', photo: @photo %>
 </div>

@@ -6,7 +6,7 @@
           <div class="timeline__photo-container">
             <%= image_tag photo.image.url(:large), class: 'timeline__photo', alt: photo.id %>
           </div>
-          <%= render 'application/information_section', photo: photo %>
+          <%= render 'photo/information_section', photo: photo %>
         </div>
       <% end %>
     <% end %>
