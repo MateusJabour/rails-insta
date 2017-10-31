@@ -5,14 +5,16 @@
   -moz-box-sizing: border-box
   box-sizing: border-box
 
-body
-  margin: 0
-  background-color: $background-color
-  font-family: $font-family
+html
   font-size: 14px
 
   @media #{$tablet-breakpoint}
     font-size: 16px
+    
+body
+  margin: 0
+  background-color: $background-color
+  font-family: $font-family
 
 .container
   width: 100%
@@ -31,6 +33,9 @@ body
   @media #{$tablet-breakpoint}
     width: 400px
     min-height: 700px
+
+fieldset
+  border: none
 
 .clearfix:before,
 .clearfix:after

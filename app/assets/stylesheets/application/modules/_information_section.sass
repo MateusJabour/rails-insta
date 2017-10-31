@@ -14,19 +14,20 @@
     width: 337px
     height: 600px
 
-
 .information_section__stats
   flex: 2
 
 .information_section__user-profile
   @include flexbox()
-  margin: 0 0 10px 0
-  padding: 20px 15px
+  margin: 0 0 rem(10px) 0
+  padding: rem(20px) rem(15px)
   border-bottom: 1px solid $border-color
   align-items: center
 
 .information_section__user-profile-photo
-  margin-right: 10px
+  width: 42px
+  height: 42px
+  margin-right: rem(10px)
   border: 1px solid $border-color
   border-radius: 75px
 
@@ -35,17 +36,17 @@
 
 .information_section__photo-stats
   height: 50px
-  padding: 10px 0
-  padding-left: 20px
+  padding: rem(10px) 0
+  padding-left: rem(20px)
 
 .information_section__created-at
-  margin-right: 10px
+  margin-right: rem(10px)
   float: right
 
 .information_section__likes
   font-weight: 600
 
 .information_section__comment-list
-  padding: 0 10px 0 0
+  padding: 0 rem(10px) 0 0
   margin: 0
   list-style: none

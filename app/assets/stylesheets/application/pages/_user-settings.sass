@@ -17,11 +17,11 @@
 
     .tab
       width: 100%
-      padding: 20px 15%
+      padding: rem(20px) 15%
       cursor: pointer
 
       &--selected
-        padding: 20px 15% 20px calc(15% - 2px)
+        padding: rem(20px) 15% rem(20px) calc(15% - rem(2px))
         border-left: 2px solid #000
         font-weight: bold
 
@@ -31,12 +31,12 @@
 .user-settings__field
   @include flexbox()
   width: 90%
-  margin: 20px auto
+  margin: rem(20px) auto
   align-items: center
 
   .left-side
     width: 25%
-    margin-right: 10px
+    margin-right: rem(10px)
     font-weight: bold
     text-align: right
 
@@ -51,7 +51,7 @@
     .text_field
       @extend .field
       width: 100%
-      padding: 5px 10px
+      padding: rem(5px) rem(10px)
 
   .right-side.checkbox
     display: inline-flex
@@ -59,4 +59,4 @@
     align-items: center
 
     input
-      margin-right: 10px
+      margin-right: rem(10px)

@@ -1,7 +1,7 @@
 .form__container
   min-height: 320px
-  padding: 30px 15px
-  margin-top: 130px
+  padding: rem(30px) rem(15px)
+  margin-top: rem(130px)
   border: 1px solid $border-color
   background: #fff
 
@@ -13,39 +13,41 @@
 .form__field
   @extend .field
   display: block
-  padding: 10px
   width: 300px
-  margin: 5px auto
+  padding: rem(10px)
+  margin: rem(5px) auto
   @media #{$tablet-breakpoint}
     width: 100%
-    margin: 5px 0
+    margin: rem(5px) 0
 
 .form__submit-button
   display: block
   width: 300px
-  margin: 10px auto
-  padding: 5px
+  margin: rem(10px) auto
+  padding: rem(5px)
   border: 1px solid $insta-blue
   border-radius: 3px
   background-color: $insta-blue
   color: #fff
   font-family: $font-family
-  font-size: $base-font-size
+  font-size: rem(16px)
 
   @media #{$tablet-breakpoint}
     width: 100%
-    margin: 10px 0
+    margin: rem(10px) 0
 
 .form__helper
   height: 50px
-  padding: 0 15px
-  margin-top: 20px
+  padding: 0 rem(15px)
+  margin-top: rem(20px)
   border: 1px solid $border-color
   text-align: center
   background: #fff
 
-.form__errors ul
-  padding: 0
+.form__error
   color: $error-red
   text-align: center
-  list-style: none
+  margin-top: rem(20px)
+
+  p
+    margin: 0 0 rem(5px) 0

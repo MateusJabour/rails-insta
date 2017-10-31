@@ -5,23 +5,29 @@
   display: -webkit-flex
   display: flex
 
+@function rem($pixels)
+  @if (unitless($pixels))
+    $pixels: $pixels * 1px
+
+  @return $pixels / 16px * 1rem
+
+
 .button_to
   display: inline
-
-.message.alert
-  color: $error-red
-  text-align: center
 
 .link
   color: $insta-blue
   text-decoration: none
 
+.single-photo
+  background-color: #fff
+
 .button
-  padding: 5px 12px
+  padding: rem(5px) rem(12px)
   border: 1px solid $border-color
   border-radius: 3px
   color: black
-  font-size: 14px
+  font-size: rem(14px)
   font-weight: 600
   text-decoration: none
   background-color: #fff
@@ -31,12 +37,23 @@
     color: #fff
 
   @media #{$tablet-breakpoint}
-    padding: 5px 24px
+    padding: rem(5px) rem(24px)
 
 .field
   border: 1px solid #efefef
-  font-size: $base-font-size
+  font-size: rem(16px)
   font-family: $font-family
+
+
+.visually-hidden
+  position: absolute
+  overflow: hidden
+  clip: rect(0 0 0 0)
+  height: 1px
+  width: 1px
+  margin: -1px
+  padding: 0
+  border: 0
 
 .hidden
   display: none
