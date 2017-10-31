@@ -6,6 +6,7 @@ module.exports = {
     "globals": {
       "Image": true,
       "FileReader": true,
-      "document": true
+      "document": true,
+      "window": true,
     }
 };
