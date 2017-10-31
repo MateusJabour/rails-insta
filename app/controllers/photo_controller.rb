@@ -13,10 +13,7 @@ class PhotoController < ApplicationController
   def create
     photo = current_user.photos.new(photo_params)
     if photo.save
-      redirect_to user_page_path(current_user), notice: 'Photo posted'
-    else
-      flash.now.alert = photo.errors.full_message
-      render :new
+      redirect_to user_page_path(current_user)
     end
   end
 
@@ -49,8 +46,6 @@ class PhotoController < ApplicationController
 
     if @comment.save
       @comment.createNotification
-    else
-      flash.now.alert = 'Invalid comment'
     end
 
     respond_to do |format|
