@@ -5,11 +5,18 @@ class SignupController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    data = {}
+
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_page_path(@user), notice: 'Welcome'
+      data[:redirect] = user_page_path(session[:user_id])
     else
-      render :new
+      data[:errors] = @user.errors
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: data }
     end
   end
 

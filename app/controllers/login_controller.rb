@@ -7,16 +7,21 @@ class LoginController < ApplicationController
 
   def create
     user = User.find_by_username(params[:username].to_s)
-
+    data = {}
     if user && user.authenticate(params[:password])
       return_url = session.fetch(:return_to, user_page_path(user.id))
       reset_session
       session[:user_id] = user.id
-      redirect_to return_url
+      data[:redirect] = return_url
     else
-      flash.now.alert = 'Username or password invalid'
-      render :new
+      data[:error] =  'Username or password invalid'
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: data }
+    end
+
   end
 
   def destroy
