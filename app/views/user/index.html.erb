@@ -1,34 +1,50 @@
+<% if @user.pending_following_relationships.find_by_followed_id(current_user.id) %>
+  <div class="follow-invite">
+    Accept follow invite?
+    <%= link_to 'Accept',
+      accept_relationship_path,
+      data: {
+        relationship_id: @user.pending_following_relationships.find_by_followed_id(current_user.id).id,
+        pending_relationship_control: ''
+      },
+      class: 'button follow-invite__relationship-control'
+    %>
+    <%= link_to 'Decline',
+      decline_relationship_path,
+      data: {
+        relationship_id: @user.pending_following_relationships.find_by_followed_id(current_user.id).id,
+       pending_relationship_control: ''
+       },
+       class: 'button follow-invite__relationship-control'
+     %>
+  </div>
+<% end %>
 <div class="user-profile clearfix">
   <%= image_tag @user.avatar.url(:medium), class: 'user-profile__photo' %>
   <div class="user-profile__right-side">
     <div class="user-profile__actions">
 
-    <span class="user-profile__username"><%= @user.username %></span>
+      <span class="user-profile__username"><%= @user.username %></span>
 
-    <% if current_user.id == @user.id %>
-      <%= link_to 'Edit profile', edit_user_path, class: 'button user-profile__edit-profile' %>
-      <%= link_to create_photo_path, class: 'user-profile__add-photo' do %>
-        <%= image_tag("add", alt: "Add photo") %>
+      <% if current_user.id == @user.id %>
+        <%= link_to 'Edit profile', edit_user_path, class: 'button user-profile__edit-profile' %>
+        <%= link_to create_photo_path, class: 'user-profile__add-photo' do %>
+          <%= image_tag("add", alt: "Add photo") %>
+        <% end %>
+        <%= link_to logout_path, class: 'user-profile__logout' do %>
+          <%= image_tag("logout", alt: "Log out") %>
+        <% end%>
       <% end %>
-      <%= link_to logout_path, class: 'user-profile__logout' do %>
-        <%= image_tag("logout", alt: "Log out") %>
-      <% end%>
-    <% end %>
 
-    <% if @user.pending_following_relationships.find_by_followed_id(current_user.id) %>
-        <%= link_to 'Accept', accept_relationship_path, data: { relationship_id: @user.pending_following_relationships.find_by_followed_id(current_user.id).id }, class: 'user-profile__unfollow-user pending-relationship-control' %>
-        <%= link_to 'Decline', decline_relationship_path, data: { relationship_id: @user.pending_following_relationships.find_by_followed_id(current_user.id).id }, class: 'user-profile__unfollow-user pending-relationship-control' %>
-    <% end %>
-
-    <% if current_user.id != @user.id %>
-      <% if current_user.following_relationships.find_by_followed_id(@user.id) %>
-          <%= button_to 'Unfollow', unfollow_user_path, class: 'user-profile__unfollow-user relationship-control' %>
-      <% elsif current_user.pending_following_relationships.find_by_followed_id(@user.id) %>
-          <%= button_to 'Pending', unfollow_user_path, class: 'user-profile__unfollow-user relationship-control' %>
-      <% else %>
-          <%= button_to 'Follow', follow_user_path, class: 'user-profile__follow-user relationship-control' %>
-       <% end %>
-    <% end %>
+      <% if current_user.id != @user.id %>
+        <% if current_user.following_relationships.find_by_followed_id(@user.id) %>
+            <%= button_to 'Unfollow', unfollow_user_path, class: 'button user-profile__relationship-control', data: { relationship_control: '' } %>
+        <% elsif current_user.pending_following_relationships.find_by_followed_id(@user.id) %>
+            <%= button_to 'Pending', unfollow_user_path, class: 'button user-profile__relationship-control', data: { relationship_control: '' } %>
+        <% else %>
+            <%= button_to 'Follow', follow_user_path, class: 'button user-profile__relationship-control', data: { relationship_control: '' } %>
+         <% end %>
+      <% end %>
     </div>
 
     <div class="user-profile__counters">
