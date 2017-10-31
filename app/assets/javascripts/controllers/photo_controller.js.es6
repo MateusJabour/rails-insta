@@ -10,7 +10,7 @@ const PhotoController = (() => {
   `;
 
   const updateComments = (el, data) => {
-    $(el).children('.comment-text-input').val('');
+    $(el).children('.comment-form__text-input').val('');
     $(`#${el.dataset.commentListId}`).append(generateComment(data.comment, data.username));
   };
 
@@ -26,7 +26,6 @@ const PhotoController = (() => {
       success: data => updateComments(e.currentTarget, data),
     });
   };
-
 
   const previewPhoto = (e) => {
     const image = e.target.files[0];
@@ -74,7 +73,7 @@ const PhotoController = (() => {
 
   const loadEvents = () => {
     $('.like-button').on('click', postLike);
-    $('.new_comment').on('submit', postComment);
+    $('.comment-form').on('submit', postComment);
     imageUploader.on('change', previewPhoto);
 
     imagePreview.on('click keydown', (e) => {
