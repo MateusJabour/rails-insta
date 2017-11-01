@@ -18,7 +18,6 @@
 .main-header__logo
   margin: 0 rem(10px) 0 0
   padding: 0 rem(10px) 0 0
-  border-right: 1px solid #000
 
   img
     height: 25px
@@ -26,15 +25,18 @@
   @media #{$tablet-breakpoint}
     margin: 0 rem(20px) 0 0
     padding: 0 rem(20px) 0 0
+    border-right: 1px solid #000
 
     img
       height: 30px
 
 .main-header__written-logo img
   height: 30px
+  display: none
 
   @media #{$tablet-breakpoint}
     height: 40px
+    display: block
 
 .main-header__menu-icons
   margin-left: rem(10px)
