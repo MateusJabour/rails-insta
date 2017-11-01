@@ -1,7 +1,8 @@
-<div class="container">
+<h2 class="visually-hidden">Add photo page</h2>
+
 <%= form_for @photo, url: create_photo_path, html: { class: 'add-photo' } do |f| %>
 
-  <div class="add-photo__preview" data-image-preview="" tabindex=0> Add photo </div>
+  <div class="add-photo__preview" data-image-preview="" tabindex=0 aria-label="Upload a photo here"> Add photo </div>
 
   <%= f.label :image, hidden: true %>
   <%= f.file_field :image, class:"add-photo__file-field", data: {'image-uploader': '' }, hidden: true  %>
@@ -10,4 +11,3 @@
 
   <%= f.submit 'Upload photo', class: "button add-photo__submit" %>
 <% end %>
-</div>

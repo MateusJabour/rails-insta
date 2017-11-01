@@ -1,4 +1,4 @@
-<li class="single-comment">
+<li class="single-comment" aria-label="<%= "Comment from #{comment.user.username}" %>">
     <p>
         <%= link_to comment.user.username, user_page_path(comment.user.id), class: 'comment-username' %>
         <span class="comment-text">

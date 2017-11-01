@@ -1,11 +1,12 @@
 <div class="user-settings">
-  <div class="user-settings__options">
+  <h2 class="visually-hidden">Edit user</h2>
+  <nav class="user-settings__options" aria-label="Tabs">
     <ul>
       <li class="tab tab--selected" data-tab-target="edit-profile">Edit profile</li>
       <li class="tab" data-tab-target="change-password">Change password</li>
     </ul>
-  </div>
-  <div class="user-settings__content">
+  </nav>
+  <section class="user-settings__content">
     <div class="tab-content" data-tab="edit-profile">
       <%= render 'user/tabs/edit_profile' %>
     </div>
@@ -14,5 +15,5 @@
       <%= render 'user/tabs/change_password' %>
     </div>
 
-  </div>
+  </section>
 </div>

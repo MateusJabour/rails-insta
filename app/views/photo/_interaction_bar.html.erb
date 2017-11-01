@@ -14,7 +14,7 @@
       id: "comment-form-#{photo.id}",
       class: "comment-form"
     } do |f| %>
-    <%= f.label :text, 'Comment', for: "comment-text-input-#{photo.id}", hidden: true %>
+    <%= f.label :text, 'Comment', for: "comment-text-input-#{photo.id}", class: "visually-hidden" %>
     <%= f.text_field :text, placeholder: "Add a comment", class: 'comment-form__text-input', id: "comment-text-input-#{photo.id}" %>
   <% end %>
 </div>

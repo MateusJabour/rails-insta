@@ -1,19 +1,29 @@
 <header class='main-header'>
-  <div class="main-header__menu">
+  <nav class="main-header__menu" aria-label="Header">
     <div class="main-header__menu-sections">
-      <%= link_to image_tag('instagram-icon'), timeline_path, class: "main-header__logo" %>
-      <%= link_to image_tag('written_insta.png'), timeline_path, class: "main-header__written-logo" %>
+      <%= link_to timeline_path, class: "main-header__logo" do %>
+        <%= image_tag 'instagram-icon', alt: "Instagram logo" %>
+      <% end%>
+      <h1 class="main-header__written-logo">
+        <%= image_tag 'written_insta.png', alt: "Instagram" %>
+      </h1>
     </div>
-    <div class="main-header__menu-sections">
+    <div class="main-header__menu-sections" role="search" aria-label="Instagram">
       <form>
-        <label for="search-field" hidden>Search</label>
+        <label for="search-field" class="visually-hidden">Search</label>
         <input id="search-field" type="text" name="name" value="" placeholder="Search" class="main-header__search">
       </form>
     </div>
     <div class="main-header__menu-sections">
-      <%= link_to image_tag('bussola-icon'), users_list_path, class: "main-header__menu-icons" %>
-      <%= link_to image_tag('heart-icon'), notifications_path(current_user), class: "main-header__menu-icons" %>
-      <%= link_to image_tag('user-icon'), user_page_path(current_user), class: "main-header__menu-icons" %>
+      <%= link_to users_list_path, class: "main-header__menu-icons" do %>
+        <%= image_tag'bussola-icon', alt: "Explore section" %>
+      <% end%>
+      <%= link_to notifications_path(current_user), class: "main-header__menu-icons" do %>
+        <%= image_tag'heart-icon', alt: "Notifications section" %>
+      <% end%>
+      <%= link_to user_page_path(current_user), class: "main-header__menu-icons" do %>
+        <%= image_tag'user-icon', alt: "User section" %>
+      <% end%>
     </div>
-  </div>
+  </nav>
 </header>

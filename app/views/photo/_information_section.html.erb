@@ -8,7 +8,7 @@
 
   <div class="information_section__stats">
     <div class="information_section__photo-stats clearfix">
-      <span class="like-counter information_section__likes" id="<%= "like-counter-#{photo.id}" %>">
+      <span class="like-counter information_section__likes" id="<%= "like-counter-#{photo.id}" %>" aria-label="<%= "#{photo.likes.count}" %> likes">
         <span><%= photo.likes.count %></span> likes
       </span>
 

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Insta</title>
+    <title>Instagram</title>
     <%= csrf_meta_tags %>
+    <meta name=viewport content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,9 +13,9 @@
       <%= render 'main_header' %>
     <% end %>
 
-    <div class="<% if logged_in? %>container<% else %>mini-container<% end %>">
+    <main class="<% if logged_in? %>container<% else %>mini-container<% end %>">
       <%= yield %>
-    </div>
+    </main>
 
     <%= render 'main_footer' %>
 

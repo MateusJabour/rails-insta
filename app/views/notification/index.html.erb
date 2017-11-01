@@ -1,7 +1,9 @@
 <div class="notifications">
+  <h2 class="visually-hidden">Notifications</h2>
+
   <% if @pending_followeds.count != 0 %>
     <% for pending_followed in @pending_followeds %>
-    <div class="notification">
+    <div class="notification" aria-label="<%= "Notification from #{User.find_by_id(pending_followed.follower_id).username}" %>">
       <%= link_to user_page_path(pending_followed.follower_id), class: "notification__link" do %>
         <%= image_tag User.find_by_id(pending_followed.follower_id).avatar.url(:small), class: "notification__avatar" %>
       <% end %>
@@ -19,7 +21,7 @@
   <% end %>
   <% if @notifications.count != 0 %>
     <% for notification in @notifications %>
-      <div class="notification">
+      <div class="notification" aria-label="<%= "Notification from #{User.find_by_id(notification.user_id).username}" %>">
 
         <%= link_to user_page_path(notification.user_id), class: "notification__link" do %>
           <%= image_tag notification.user.avatar.url(:small), class: "notification__avatar" %>

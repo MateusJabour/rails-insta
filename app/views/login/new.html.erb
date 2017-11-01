@@ -1,19 +1,23 @@
-<div class="form__container form__container--login">
-  <%= image_tag "written_insta.png", class: "form__title" %>
+<h1 class="visually-hidden">Instagram</h1>
+<h2 class="visually-hidden">Login</h2>
+
+<section class="form__container form__container--login" role="region" aria-label="Login">
+  <%= image_tag "written_insta.png", class: "form__title", alt: "Written instagram logo" %>
   <%= form_tag login_path, aria: { live: 'polite' }, data: {login_form: ''} do %>
       <fieldset>
         <legend class="visually-hidden">Login on instagram</legend>
-        <%= label_tag :username, 'Username', hidden: true %>
+        <%= label_tag :username, 'Username', class: 'visually-hidden' %>
         <%= text_field_tag :username, nil, placeholder: "Username", class: "form__field" %>
-        <%= label_tag :password, 'Password', hidden: true %>
+        <%= label_tag :password, 'Password', class: 'visually-hidden' %>
         <%= password_field_tag :password, nil, placeholder: "Password", class: "form__field" %>
         <%= submit_tag 'Log in', class: "form__submit-button" %>
         <div class="form__error"></div>
       </fieldset>
   <% end %>
-</div>
-<div class="form__helper">
+</section>
+
+<aside class="form__helper">
   <p>
     You don't have an account? <%= link_to 'Sign up', signup_path, class: "link" %>
   </p>
-</div>
+</aside>

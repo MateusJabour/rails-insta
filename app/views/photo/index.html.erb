@@ -1,6 +1,12 @@
-<div class="photo-page__container single-photo" id="<%= "single-photo-#{@photo.id}" %>">
-  <div class="photo-page__photo">
-    <%= image_tag @photo.image.url(:large), alt: @photo.id %>
+<h2 class="visually-hidden"><%= "Photo from #{@photo.user.username}" %></h2>
+
+<article
+  class="photo-page__container single-photo"
+  id="<%= "single-photo-#{@photo.id}" %>"
+  aria-label="<%= "Photo from #{@photo.user.username}" %>"
+>
+  <div class="photo-container">
+    <%= image_tag @photo.image.url(:large), alt: @photo.id, class: 'photo' %>
   </div>
   <%= render 'information_section', photo: @photo %>
-</div>
+</article>
