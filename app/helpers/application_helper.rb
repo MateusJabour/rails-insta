@@ -12,18 +12,18 @@ module ApplicationHelper
           dif_in_day = dif_in_hour / 24
           if dif_in_day > 7
             dif_in_week = dif_in_day / 7
-            dif_in_week.to_s + 'w'
+            dif_in_week.to_s + ' week'
           else
-            dif_in_day.to_s + 'd'
+            dif_in_day.to_s + ' days'
           end
         else
-          dif_in_hour.to_s + 'h'
+          dif_in_hour.to_s + ' hours'
         end
       else
-        dif_in_min.to_s + 'm'
+        dif_in_min.to_s + ' minutes'
       end
     else
-      dif_in_sec.to_s + 's'
+      dif_in_sec.to_s + ' seconds'
     end
 
   end
