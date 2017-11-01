@@ -11,7 +11,7 @@ const LoginController = (() => {
       success: (data) => {
         if (data.redirect) {
           window.location.href = data.redirect;
-        } else if (data.error){
+        } else if (data.error) {
           $(e.currentTarget).find('.form__error').text(data.error);
         }
       },

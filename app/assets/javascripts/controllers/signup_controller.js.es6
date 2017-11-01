@@ -13,7 +13,7 @@ const SignupController = (() => {
       success: (data) => {
         if (data.redirect) {
           window.location.href = data.redirect;
-        } else if  (data.errors) {
+        } else if (data.errors) {
           const errorsContainer = $(e.currentTarget).find('.form__error');
           errorsContainer.html('');
           Object.keys(data.errors).forEach((field) => {
